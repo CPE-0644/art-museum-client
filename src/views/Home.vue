@@ -10,20 +10,56 @@
         column
         justify-center
       >
-        <h1 class="display-2 font-weight-thin mb-3">Vuetify.js</h1>
-        <h4 class="subheading">Build your application today!</h4>
+        <h1 class="display-2 font-weight-thin mb-3">Tusave De Museum</h1>
+        <h4 class="subheading">Find your interested!</h4>
       </v-layout>
     </v-parallax>
     </section>
-    <section id="home-exhibition"></section>
-    <section id="home-artwork"></section>
-    <section id="home-artist"></section>
+    <section id="home-exhibition">
+      <h2>
+        Exhibition  
+      </h2> 
+      <carousel>
+        <slide v-for="(exhibition, index) in exhibitions" :key="index">{{exhibition}}</slide>
+      </carousel>
+      <router-link to="/exhibitions">see more..</router-link>
+    </section>
+    <section id="home-artwork">
+      <h2>
+        Artwork
+      </h2>
+      <carousel>
+        <slide  v-for="(artwork, index) in artworks" :key="index">{{artwork}}</slide>
+      </carousel>
+      <router-link to="/artworks">see more..</router-link>
+      </section>
+    <section id="home-artist">
+      <h2>Artist</h2>
+      <carousel>
+        <slide v-for="(artist, index) in artists" :key="index">{{artist}}</slide>
+      </carousel>
+      <router-link to="/artists">see more..</router-link>
+      </section>
   </div>
 </template>
 
 <script>
+import { Carousel, Slide } from 'vue-carousel';
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  data() {
+    return {
+      exhibitions: [1, 2, 3, 4],
+      artworks: [1, 2, 3, 4],
+      artists: [1, 2, 3, 4]
+    };
+  },
+
+  components: {
+    Carousel,
+    Slide
+  }
 };
 </script>
 
@@ -35,11 +71,11 @@ export default {
 
 #home-artwork {
   height: 200px;
-  background: #222;
+  background: #fff;
 }
 
 #home-artist {
   height: 200px;
-  background: #000;
+  background: #fff;
 }
 </style>

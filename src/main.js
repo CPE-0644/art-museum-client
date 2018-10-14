@@ -6,8 +6,10 @@ Vue.config.productionTip = false;
 
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import VueCarousel from 'vue-carousel';
 
 Vue.use(Vuetify);
+Vue.use(VueCarousel);
 
 new Vue({
   router,

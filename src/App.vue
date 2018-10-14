@@ -1,33 +1,43 @@
 <template>
   <div id="app">
     <Header />
-    <Home />
+    <div class="container">
+      <router-view></router-view>
     <Footer />
+    </div>
   </div>
 </template>
 
 <script>
-import Home from './views/Home';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default {
   name: 'app',
   components: {
     Header,
-    Footer,
-    Home
+    Footer
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  .container {
+    @media screen and (min-width: 500px) {
+      width: 70%;
+    }
+    @media screen and (max-width: 700px) {
+      width: 90%;
+    }
+    padding: 50px 0px;
+    box-shadow: 0px 0px 10px grey;
+  }
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: auto;
 }
 </style>

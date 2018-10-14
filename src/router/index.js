@@ -3,37 +3,32 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const Exhibition = {
-  template: <div>Exhibition</div>
-};
-
-const Artwork = {
-  template: <div>Artwork</div>
-};
-
-const Artist = {
-  template: <div>Artist</div>
-};
-
-import Home from '../views/Home.vue';
+import Home from '@/views/Home.vue';
+import Exhibitions from '@/views/Exhibitions.vue';
+import Artworks from '@/views/Artworks.vue';
+import Artists from '@/views/Artists.vue';
 
 export default new Router({
   routes: [
     {
       path: '/',
+      name: 'home',
       component: Home
     },
     {
       path: '/exhibitions',
-      component: Exhibition
+      name: 'Exhibitions',
+      component: Exhibitions
     },
     {
       path: '/artworks',
-      component: Artwork
+      name: 'Artworks',
+      component: Artworks
     },
     {
       path: '/artists',
-      component: Artist
+      name: 'Artists',
+      component: Artists
     }
   ]
 });

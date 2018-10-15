@@ -1,14 +1,15 @@
 <template>
   <div>
     <h1>Artist</h1>
-    <ul>
-      <li v-for="(artist, index) in artists" :key="index">{{artist}}</li>
-    </ul>
+    <div class="body-content">
+      <artist-list :artists="artists"></artist-list>
+    </div>
   </div>
 </template>
 
 <script>
 import { artists } from '../assets/database/artists.json';
+import ArtistList from '../components/ArtistList';
 
 export default {
   name: 'Artists',
@@ -16,6 +17,9 @@ export default {
     return {
       artists: artists.slice(0, 10)
     };
+  },
+  components: {
+    ArtistList
   }
 };
 </script>

@@ -1,9 +1,9 @@
 <template>
  <v-footer
     height="auto"
-    color="primary lighten-1"
+    color="#64B5F6"
   >
-    <v-layout
+  <v-layout
       justify-center
       row
       wrap
@@ -16,14 +16,32 @@
         white--text
         xs12
       >
-        &copy;2018 — <strong>Vuetify</strong>
+      <div>
+        {{location}}
+      </div>
+      <div>
+        {{contact}}
+      </div>
+      <div>
+        {{hour}}
+      </div>
+        <strong>&copy;2018 — Vuetify</strong>
       </v-flex>
     </v-layout>
   </v-footer>
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'Footer',
+  data() {
+    return {
+      location: 'Here by your side',
+      contact: 'info.Tusave@cmu.ac.th',
+      hour: 'Everyday 1:00am. - 11.00pm.'
+    };
+  }
+};
 </script>
 
 <style>

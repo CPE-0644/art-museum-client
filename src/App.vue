@@ -30,7 +30,7 @@ export default {
     @media screen and (max-width: 700px) {
       width: 90%;
     }
-    padding: 50px 0px;
+    padding: 50px 0px 0px 0px;
     box-shadow: 0px 0px 10px grey;
   }
   font-family: 'Roboto', sans-serif;

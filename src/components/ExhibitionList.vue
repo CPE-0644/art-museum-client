@@ -1,18 +1,18 @@
 <template>
   <div class="exhibition-list">
     <div v-for="(exhibition, index) in exhibitionDetailList" :key="index">
-      <ExhibitionBox :exhibitionDetail="exhibition"/>
+      <ExhibitionCard :exhibitionDetail="exhibition"/>
     </div>
   </div>
 </template>
 
 <script>
-import ExhibitionBox from './ExhibitionBox';
+import ExhibitionCard from './ExhibitionCard';
 export default {
   props: ['exhibitionDetailList'],
   name: 'ExhibitionList',
   components: {
-    ExhibitionBox
+    ExhibitionCard
   }
 };
 </script>

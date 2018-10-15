@@ -1,5 +1,5 @@
 <template>
-  <div class="exhibition-box">
+  <!-- <div class="exhibition-box">
     <div class="exhibition-name">
       {{exhibitionDetail['name']}}  
     </div>
@@ -23,7 +23,36 @@
       Supported users:
       {{exhibitionDetail['number-supported-users']}}
     </div>
-  </div>
+  </div> -->
+   <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-hover>
+      <v-card slot-scope="{ hover }"
+      :class="`elevation-${hover ? 12 : 2}`"
+      class="mx-auto"
+      width="344">
+        <v-img
+          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+          aspect-ratio="2.75"
+        ></v-img>
+
+        <v-card-title primary-title>
+          <div>
+            <h3 class="headline">{{exhibitionDetail['name']}}</h3>
+            <span >{{exhibitionDetail['start-date']}} - {{exhibitionDetail['end-date']}}</span>
+          </div>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-btn flat color="orange">JOIN</v-btn>
+            <div class="grey--text">
+              {{exhibitionDetail['number-supported-users']}} seat left
+            </div>
+        </v-card-actions>
+      </v-card>
+      </v-hover>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

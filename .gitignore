@@ -22,3 +22,4 @@ yarn-error.log*
 
 # art-museum-files
 src/assets/img
+src/assets/database/artist-data

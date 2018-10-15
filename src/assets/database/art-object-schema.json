@@ -20,7 +20,11 @@
       "display": ["", ""],
       "number-supported-users": ""
     }
+<<<<<<< HEAD
   ],,
+=======
+  ],
+>>>>>>> feature/routing
   "art-objects": [
     {
       "artwork-id": "",

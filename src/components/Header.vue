@@ -1,11 +1,11 @@
 <template>
-   <v-toolbar fixed height="50">
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title>Title</v-toolbar-title>
+   <v-toolbar fixed height="40" color="blue darken-3">
+    <v-toolbar-title class="white--text">Tusave De Museum</v-toolbar-title>
+
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat>
-        <router-link to="/"><a class="plain-link">Home</a></router-link>
+        <router-link to="/">Home</router-link>
       </v-btn>
       <v-btn flat>
         <router-link to="/exhibitions">Exhibition</router-link>
@@ -27,5 +27,6 @@ export default {};
 <style>
 a {
   text-decoration: none;
+  color: white;
 }
 </style>

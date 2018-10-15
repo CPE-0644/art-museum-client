@@ -1,6 +1,6 @@
 <template>
    <v-toolbar fixed height="40" color="blue darken-3">
-    <v-toolbar-title class="white--text">Tusave De Museum</v-toolbar-title>
+    <v-toolbar-title class="white--text">Museum</v-toolbar-title>
 
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">

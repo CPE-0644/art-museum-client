@@ -1,29 +1,4 @@
 <template>
-  <!-- <div class="exhibition-box">
-    <div class="exhibition-name">
-      {{exhibitionDetail['name']}}  
-    </div>
-    <div class="exhibition-start-date">
-      Start date:
-      {{exhibitionDetail['start-date']}}
-    </div>
-    <div class="exhibition-end-date">
-      End date:
-      {{exhibitionDetail['end-date']}}
-    </div>
-    <div class="exhibition-show-artworks">
-      Shows: 
-      <ul>
-        <li v-for="(artwork, index) in exhibitionDetail['display']" :key="index">
-          {{artwork}}
-        </li>
-      </ul>
-    </div>
-    <div class="exhibition-supported-users">
-      Supported users:
-      {{exhibitionDetail['number-supported-users']}}
-    </div>
-  </div> -->
    <v-layout>
     <v-flex xs12 sm6 offset-sm3>
       <v-hover>
@@ -38,15 +13,15 @@
 
         <v-card-title primary-title>
           <div>
-            <h3 class="headline">{{exhibitionDetail['name']}}</h3>
-            <span >{{exhibitionDetail['start-date']}} - {{exhibitionDetail['end-date']}}</span>
+            <h3 class="headline">{{exhibitionDetail.name}}</h3>
+            <span >{{exhibitionDetail.start_date}} - {{exhibitionDetail.end_date}}</span>
           </div>
         </v-card-title>
 
         <v-card-actions>
           <v-btn flat color="orange">JOIN</v-btn>
             <div class="grey--text">
-              {{exhibitionDetail['number-supported-users']}} seat left
+              {{exhibitionDetail.supported}} seat left
             </div>
         </v-card-actions>
       </v-card>

@@ -23,14 +23,14 @@ export default {
     ArtistList
   },
   methods: {
-    getArtists() {
-      apiService.getArtists().then(data => {
+    fetchArtists() {
+      apiService.fetchArtists().then(data => {
         this.artists = data;
       });
     }
   },
   mounted() {
-    this.getArtists();
+    this.fetchArtists();
   }
 };
 </script>

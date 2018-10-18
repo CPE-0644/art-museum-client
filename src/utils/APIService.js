@@ -5,13 +5,22 @@ const API_URL = 'http://localhost:3000/api';
 export class APIService {
   constructor() {}
 
+  fetchUrl(url) {
+    return axios.get(url).then(response => response.data);
+  }
+
   fetchArtists() {
     const url = `${API_URL}/artists`;
-    return axios.get(url).then(response => response.data);
+    return this.fetchUrl(url);
   }
 
   fetchArtworks() {
     const url = `${API_URL}/artworks`;
-    return axios.get(url).then(response => response.data);
+    return this.fetchUrl(url);
+  }
+
+  fetchExhibitions() {
+    const url = `${API_URL}/exhibitions`;
+    return this.fetchUrl(url);
   }
 }

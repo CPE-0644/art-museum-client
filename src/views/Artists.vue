@@ -8,18 +8,29 @@
 </template>
 
 <script>
-import { artists } from '../assets/database/artists.json';
 import ArtistList from '../components/ArtistList';
+import { APIService } from '../utils/APIService.js';
+const apiService = new APIService();
 
 export default {
   name: 'Artists',
   data() {
     return {
-      artists: artists.slice(0, 10)
+      artists: []
     };
   },
   components: {
     ArtistList
+  },
+  methods: {
+    getArtists() {
+      apiService.getArtists().then(data => {
+        this.artists = data;
+      });
+    }
+  },
+  mounted() {
+    this.getArtists();
   }
 };
 </script>

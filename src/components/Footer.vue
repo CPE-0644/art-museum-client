@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="footer">
     <div>
       {{location}}
 
@@ -28,4 +28,9 @@ export default {
 </script>
 
 <style>
+#footer {
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
 </style>

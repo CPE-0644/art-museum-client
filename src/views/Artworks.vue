@@ -4,10 +4,10 @@
       Artworks
     </h1>
     <div class="type-choice">
-      <v-btn color="#42A5F5" @click="changeShowType('painting')">Painting</v-btn>
-      <v-btn color="#42A5F5" @click="changeShowType('sculpture')">Sculpture</v-btn>
-      <v-btn color="#42A5F5" @click="changeShowType('statue')">Statue</v-btn>
-      <v-btn color="#42A5F5" @click="changeShowType('other')">Other</v-btn>
+      <a color="#42A5F5" @click="changeShowType('painting')">Painting</a>
+      <a color="#42A5F5" @click="changeShowType('sculpture')">Sculpture</a>
+      <a color="#42A5F5" @click="changeShowType('statue')">Statue</a>
+      <a color="#42A5F5" @click="changeShowType('other')">Other</a>
     </div>
     <div class="body-content">
       <artwork-list :artworks="artworks"></artwork-list>

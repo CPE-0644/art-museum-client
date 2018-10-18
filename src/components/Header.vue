@@ -1,46 +1,22 @@
 <template>
-  <div>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="1">Processing Center</el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">Workspace</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-submenu index="2-4">
-        <template slot="title">item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>
+<div>
+  <el-menu default-active="1" class="el-menu-demo" mode="horizontal" 
+     router style="position: relative;">
+    <el-menu-item index="1" route="/">JustAMuseum</el-menu-item>
+    <el-menu-item index="2" route="/artworks">Artworks</el-menu-item>
+    <el-menu-item index="3" route="/exhibitions">Exhibitions</el-menu-item>
+    <el-menu-item index="4" route="/artists">Artists</el-menu-item>
+    <el-menu-item index="5" route="/collections" disabled>Collections</el-menu-item>
+    <el-menu-item index="6" route="/users" disabled>Users</el-menu-item>
   </el-menu>
-    <h1>
-      Museum
-    </h1>
-    <div>
-      <router-link to="/">Home</router-link>
-    </div>
-    <div>
-      <router-link to="/exhibitions">Exhibition</router-link>
-    </div>
-    <div>
-      <router-link to="/artworks">Artwork</router-link>
-    </div>
-    <div>
-      <router-link to="/artists">Artist</router-link>
-    </div>
-  </div>
+</div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'Header'
+};
 </script>
 
 <style>
-a {
-  text-decoration: none;
-}
 </style>

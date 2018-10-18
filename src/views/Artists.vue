@@ -2,7 +2,6 @@
   <div>
     <h1>Artist</h1>
     <div class="search-box">
-
     </div>
     <div class="body-content">
       <artist-list :artists="artists"></artist-list>

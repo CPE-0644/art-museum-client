@@ -9,12 +9,7 @@
 <script>
 export default {
   props: ['items'],
-  name: 'Carousel',
-  date() {
-    return {
-      items: items
-    };
-  }
+  name: 'Carousel'
 };
 </script>
 

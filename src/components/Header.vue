@@ -1,23 +1,22 @@
 <template>
-   <v-toolbar fixed height="40" color="blue darken-3">
-    <v-toolbar-title class="white--text">Museum</v-toolbar-title>
+  <div>
 
-    <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>
-        <router-link to="/">Home</router-link>
-      </v-btn>
-      <v-btn flat>
-        <router-link to="/exhibitions">Exhibition</router-link>
-      </v-btn>
-      <v-btn flat>
-        <router-link to="/artworks">Artwork</router-link>
-      </v-btn>
-      <v-btn flat>
-        <router-link to="/artists">Artist</router-link>
-      </v-btn>
-    </v-toolbar-items>
-  </v-toolbar>
+    <h1>
+      Museum
+    </h1>
+    <div>
+      <router-link to="/">Home</router-link>
+    </div>
+    <div>
+      <router-link to="/exhibitions">Exhibition</router-link>
+    </div>
+    <div>
+      <router-link to="/artworks">Artwork</router-link>
+    </div>
+    <div>
+      <router-link to="/artists">Artist</router-link>
+</div>
+  </div>
 </template>
 
 <script>
@@ -27,6 +26,5 @@ export default {};
 <style>
 a {
   text-decoration: none;
-  color: white;
 }
 </style>

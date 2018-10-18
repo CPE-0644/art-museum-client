@@ -1,34 +1,17 @@
 <template>
- <v-footer
-    height="auto"
-    color="#64B5F6"
-  >
-  <v-layout
-      justify-center
-      row
-      wrap
-    >
-      <v-flex
-        primary
-        lighten-2
-        py-3
-        text-xs-center
-        white--text
-        xs12
-      >
-      <div>
-        {{location}}
-      </div>
-      <div>
-        {{contact}}
-      </div>
-      <div>
-        {{hour}}
-      </div>
-        <strong>&copy;2018 — Vuetify</strong>
-      </v-flex>
-    </v-layout>
-  </v-footer>
+  <div>
+    <div>
+      {{location}}
+
+    </div>
+    <div>
+      {{contact}}
+    </div>
+    <div>
+      {{hour}}
+    </div>
+    <strong>&copy;2018 — Vuetify</strong>
+  </div>
 </template>
 
 <script>

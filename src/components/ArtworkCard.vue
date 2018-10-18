@@ -1,5 +1,5 @@
 <template>
-  <div class="artwork-card">
+  <div class="artwork-card" @click="goToDetail()">
     {{artwork}}
   </div>
 </template>
@@ -7,7 +7,12 @@
 <script>
 export default {
   props: ['artwork'],
-  name: 'ArtworkCard'
+  name: 'ArtworkCard',
+  methods: {
+    goToDetail() {
+      this.$router.push();
+    }
+  }
 };
 </script>
 

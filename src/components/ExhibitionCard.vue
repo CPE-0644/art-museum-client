@@ -1,33 +1,11 @@
 <template>
-   <v-layout>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-hover>
-      <v-card slot-scope="{ hover }"
-      :class="`elevation-${hover ? 12 : 2}`"
-      class="mx-auto"
-      width="344">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-          aspect-ratio="2.75"
-        ></v-img>
-
-        <v-card-title primary-title>
+<div class="exhibition-box">
           <div>
             <h3 class="headline">{{exhibitionDetail.name}}</h3>
             <span >{{exhibitionDetail.start_date}} - {{exhibitionDetail.end_date}}</span>
           </div>
-        </v-card-title>
-
-        <v-card-actions>
-          <v-btn flat color="orange">JOIN</v-btn>
-            <div class="grey--text">
               {{exhibitionDetail.supported}} seat left
-            </div>
-        </v-card-actions>
-      </v-card>
-      </v-hover>
-    </v-flex>
-  </v-layout>
+</div>
 </template>
 
 <script>
@@ -46,5 +24,10 @@ export default {
 }
 .exhibition-name {
   font-weight: bold;
+}
+div.exhibition-box {
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1>Artist</h1>
+    <div class="search-box">
+
+    </div>
     <div class="body-content">
       <artist-list :artists="artists"></artist-list>
     </div>
@@ -36,4 +39,10 @@ export default {
 </script>
 
 <style>
+.body-content {
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 5px rgb(199, 199, 199);
+}
 </style>

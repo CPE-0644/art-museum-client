@@ -1,12 +1,17 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/artists';
+const API_URL = 'http://localhost:3000/api';
 
 export class APIService {
   constructor() {}
 
-  getArtists() {
-    const url = `${API_URL}`;
+  fetchArtists() {
+    const url = `${API_URL}/artists`;
+    return axios.get(url).then(response => response.data);
+  }
+
+  fetchArtworks() {
+    const url = `${API_URL}/artworks`;
     return axios.get(url).then(response => response.data);
   }
 }

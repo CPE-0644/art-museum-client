@@ -21,15 +21,25 @@ import { sculptures } from '../assets/database/sculptures.json';
 import { statues } from '../assets/database/statues.json';
 import { other_types } from '../assets/database/other_type.json';
 import ArtworkList from '../components/ArtworkList';
+import { APIService } from '../utils/APIService.js';
+
+const apiService = new APIService();
+
 export default {
   name: 'Artworks',
   data() {
     return {
       showType: 'painting',
-      artworks: paintings
+      artworks: []
     };
   },
   methods: {
+    fetchArtworks() {
+      return apiService.fetchArtworks().then(data => {
+        this.artworks = data;
+      });
+    },
+
     changeShowType(type) {
       this.showType = type;
 
@@ -53,12 +63,12 @@ export default {
   },
   components: {
     ArtworkList
+  },
+  mounted() {
+    this.fetchArtworks();
   }
 };
 </script>
 
 <style lang="scss">
-.body-content {
-  height: 1000px;
-}
 </style>

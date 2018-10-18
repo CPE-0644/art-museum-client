@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="artwork-card">
     {{artwork}}
   </div>
 </template>
@@ -12,4 +12,9 @@ export default {
 </script>
 
 <style>
+div.artwork-card {
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+}
 </style>

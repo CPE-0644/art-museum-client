@@ -3,7 +3,7 @@
 
     <div class="artwork-card" @click="dialogVisible = true">
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
-        <img src="../assets/logo.png" class="image">
+        <img src="../assets/artwork.jpg" class="image">
         <div >
           <span><h4> {{this.artworkDetail.title}} </h4></span>
           <div class="artwork-detail">
@@ -96,6 +96,9 @@ div.el-dialog.el-dialog--center {
 .artwork-card {
   cursor: pointer;
   margin: 10px;
+  .image {
+    margin-top: 10px;
+  }
 }
 
 .artwork-detail {

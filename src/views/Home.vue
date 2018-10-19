@@ -24,7 +24,7 @@
         <i class="el-icon-more"></i>
       </router-link>
     </section>
-    <section id="section-artist">
+    <section id="section-artist" class="inner-section">
       <h2>Artist</h2>
       <carousel :items="sampleArtists"></carousel>
       <router-link to="/artists">
@@ -121,7 +121,7 @@ section.inner-section {
   margin-top: 30px;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0px 1px 5px rgb(199, 199, 199);
+  box-shadow: 0px 0px 5px rgb(199, 199, 199);
 
   i {
     text-align: right;

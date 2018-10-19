@@ -4,7 +4,7 @@
       <el-row :gutter="24">
         <el-col :span="8">
           <div class="exhibition-image">
-            <img src="../assets/logo.png" class="image">
+            <img src="../assets/exhibition.jpg" class="image">
           </div>
         </el-col>
         <el-col :span="15">
@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .exhibition-box {
   max-height: 250px;
 }
@@ -100,6 +100,9 @@ export default {
 
 .exhibition-box {
   margin: 20px;
+  .image {
+    margin-top: 20px;
+  }
 }
 
 .exhibition-image {

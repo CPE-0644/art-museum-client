@@ -60,7 +60,7 @@ export default {
   margin-top: 30px;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0px 1px 5px rgb(199, 199, 199);
+  box-shadow: 0px 1px 3px rgb(199, 199, 199);
 }
 
 .artist.search-bar {

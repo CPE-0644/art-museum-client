@@ -3,7 +3,7 @@
     <el-collapse>
       <el-collapse-item :title="artist.name" :name="artist.id">
         <div>
-          <img src="../assets/logo.png" class="image">
+          <img src="../assets/artist.jpg" class="image">
         </div>
         <div>Name: {{artist.name}} Live:{{artist.date_of_birth}} - {{artist.date_of_died}}</div>
         <div>Born: {{artist.country}}</div>

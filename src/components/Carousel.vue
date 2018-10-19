@@ -1,7 +1,7 @@
 <template>
   <el-carousel indicator-position="outside">
     <el-carousel-item v-for="(item, index) in items" :key="index">
-      <h3>{{ item.title }}</h3>
+      <h1 class="carousel-title">{{ item.title }}</h1>
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -14,19 +14,23 @@ export default {
 </script>
 
 <style>
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 18px;
-  opacity: 0.75;
+.el-carousel__item h1 {
+  color: white;
+  text-shadow: 2px 2px gray;
+  font-size: 25px;
   line-height: 300px;
   margin: 0;
 }
 
 .el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
+  background-image: url('../assets/exhibition.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
+  background-image: url('../assets/artwork.jpg');
+  background-position: center;
+  background-size: cover;
 }
 </style>

@@ -22,10 +22,6 @@
 // TODO: added artwork filter by type 
 
 <script>
-import { paintings } from '../assets/database/paintings.json';
-import { sculptures } from '../assets/database/sculptures.json';
-import { statues } from '../assets/database/statues.json';
-import { other_types } from '../assets/database/other_type.json';
 import ArtworkList from '../components/ArtworkList';
 import { APIService } from '../utils/APIService.js';
 

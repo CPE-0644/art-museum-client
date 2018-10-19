@@ -9,18 +9,20 @@
         </el-col>
         <el-col :span="15">
           <div class="exhibition-detail">
-            <h1 class="exhibtion-name">{{exhibitionDetail.name}}</h1>
-            <h5 class="exhibition-time">{{ exhibitionDetail.start_date }} - {{exhibitionDetail.end_date}}</h5>
+            <h1 class="exhibtion-name">{{exhibition.name}}</h1>
+            <h5 class="exhibition-time">{{ exhibition.start_date }} - {{exhibition.end_date}}</h5>
             <div class="exhibition-display-list"> 
               <h6>
                 Shows items: 
               </h6>
-              <span class="exhibition-display-item" v-for="(item, index) in exhibitionDetail.display" :key="index">
-                {{item}}
+              <span class="exhibition-display-item" v-for="(item, index) in artworks" :key="index">
+                <div>
+                  {{item.title}}
+                </div>
               </span>
             </div>
             <div class="exhibition-action">
-              <a class="exhibition-users">{{exhibitionDetail.supported}} seats left</a>
+              <a class="exhibition-users">{{exhibition.supported}} seats left</a>
               <el-button type="primary" size="small" round>JOIN NOW</el-button>
             </div>
           </div>
@@ -31,9 +33,34 @@
 </template>
 
 <script>
+import { APIService } from '../utils/APIService.js';
+
+const apiService = new APIService();
+
 export default {
   props: ['exhibitionDetail'],
-  name: 'ExhibitionBox'
+  name: 'ExhibitionBox',
+  data() {
+    return {
+      exhibition: this.exhibitionDetail,
+      artworks: []
+    };
+  },
+  watch: {
+    exhibitionDetail(newVal) {
+      this.exhibition = newVal;
+    }
+  },
+  methods: {
+    fetchArtworksByExhibitionId(id) {
+      return apiService.fetchArtworksByExhibitionId(id).then(data => {
+        this.artworks = data;
+      });
+    }
+  },
+  mounted() {
+    this.fetchArtworksByExhibitionId(this.exhibition.id);
+  }
 };
 </script>
 

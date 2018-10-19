@@ -23,4 +23,9 @@ export class APIService {
     const url = `${API_URL}/exhibitions`;
     return this.fetchUrl(url);
   }
+
+  fetchArtworksByExhibitionId(id) {
+    const url = `${API_URL}/exhibitions/${id}/shows`;
+    return this.fetchUrl(url);
+  }
 }

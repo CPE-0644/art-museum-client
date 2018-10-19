@@ -8,15 +8,46 @@
         <div>Name: {{artist.name}} Live:{{artist.date_of_birth}} - {{artist.date_of_died}}</div>
         <div>Born: {{artist.country}}</div>
         <div>Style: {{artist.style}}</div>
+        <div class="artist-artwork-list">
+          Artworks: 
+          <span v-for="(artwork, index) in artworks" :key="index">
+            {{artwork.title}},
+          </span>
+        </div>
       </el-collapse-item>
     </el-collapse>
   </div>
 </template>
 
 <script>
+import { APIService } from '../utils/APIService.js';
+
+const apiService = new APIService();
+
 export default {
   props: ['artist'],
-  name: 'ArtworkCard'
+  name: 'ArtworkCard',
+  data() {
+    return {
+      artist: this.artist,
+      artworks: []
+    };
+  },
+  methods: {
+    fetchArtworksByArtistId(id) {
+      return apiService.fetchArtworksByArtistId(id).then(data => {
+        this.artworks = data;
+      });
+    }
+  },
+  watch: {
+    artist(newVal) {
+      this.artist = newVal;
+    }
+  },
+  mounted() {
+    this.fetchArtworksByArtistId(this.artist.id);
+  }
 };
 </script>
 

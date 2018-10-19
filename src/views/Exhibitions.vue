@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div>
+    <h1>
       Exhibition  
+    </h1>
+    <div class="body-content">
+      <ExhibitionList :exhibitionDetailList="exhibitions"/>
     </div>
-  <ExhibitionList :exhibitionDetailList="exhibitions"/>
   </div>
 </template>
 

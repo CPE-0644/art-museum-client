@@ -1,6 +1,15 @@
 <template>
   <div class="artist-card">
-    {{artist}}
+    <el-collapse>
+      <el-collapse-item :title="artist.name" :name="artist.id">
+        <div>
+          <img src="../assets/logo.png" class="image">
+        </div>
+        <div>Name: {{artist.name}} Live:{{artist.date_of_birth}} - {{artist.date_of_died}}</div>
+        <div>Born: {{artist.country}}</div>
+        <div>Style: {{artist.style}}</div>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
@@ -12,9 +21,9 @@ export default {
 </script>
 
 <style>
-div.artist-card {
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
+.artist-card .image {
+  height: 50px;
+  width: 50px;
+  margin: auto;
 }
 </style>

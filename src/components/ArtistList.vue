@@ -1,7 +1,7 @@
 <template>
   <div class="artist-list">
     <div v-for="(artist, index) in artists" :key="index">
-      <artist-card :artist="artist"/>
+      <artist-card :artistDetail="artist"/>
     </div>
   </div>
 </template>

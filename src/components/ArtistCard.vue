@@ -25,11 +25,11 @@ import { APIService } from '../utils/APIService.js';
 const apiService = new APIService();
 
 export default {
-  props: ['artist'],
+  props: ['artistDetail'],
   name: 'ArtworkCard',
   data() {
     return {
-      artist: this.artist,
+      artist: this.artistDetail,
       artworks: []
     };
   },
@@ -41,7 +41,7 @@ export default {
     }
   },
   watch: {
-    artist(newVal) {
+    artistDetail(newVal) {
       this.artist = newVal;
     }
   },

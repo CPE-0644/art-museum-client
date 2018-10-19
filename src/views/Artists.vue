@@ -1,15 +1,22 @@
 <template>
   <div>
     <h1>Artist</h1>
-    <div class="search-box">
+    <div class="artist search-bar">
+      <el-input
+        placeholder="Find your favourite Artist"
+        v-model="artistSearch"
+        v-on:change="searchArtist"
+        clearable>
+      </el-input>
     </div>
     <div class="body-content">
-      <artist-list :artists="artists"></artist-list>
+      <artist-list :artists="filteredArtists"></artist-list>
     </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash';
 import ArtistList from '../components/ArtistList';
 import { APIService } from '../utils/APIService.js';
 const apiService = new APIService();
@@ -18,7 +25,9 @@ export default {
   name: 'Artists',
   data() {
     return {
-      artists: []
+      artists: [],
+      filteredArtists: [],
+      artistSearch: ''
     };
   },
   components: {
@@ -26,9 +35,18 @@ export default {
   },
   methods: {
     fetchArtists() {
-      apiService.fetchArtists().then(data => {
+      return apiService.fetchArtists().then(data => {
         this.artists = data;
+        this.filteredArtists = data;
       });
+    },
+    searchArtist(searchName) {
+      searchName = searchName.toLowerCase();
+      var results = _.filter(this.artists, artist => {
+        const artistName = artist.name.toLowerCase();
+        return artistName.indexOf(searchName) != -1;
+      });
+      this.filteredArtists = results;
     }
   },
   mounted() {
@@ -43,5 +61,9 @@ export default {
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 1px 5px rgb(199, 199, 199);
+}
+
+.artist.search-bar {
+  margin: 0 10vw;
 }
 </style>

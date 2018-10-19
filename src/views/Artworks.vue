@@ -22,6 +22,7 @@
 // TODO: added artwork filter by type 
 
 <script>
+import _ from 'lodash';
 import ArtworkList from '../components/ArtworkList';
 import { APIService } from '../utils/APIService.js';
 

@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import { APIService } from '../utils/APIService.js';
 import Carousel from '../components/Carousel';
 
@@ -53,21 +54,47 @@ export default {
     Carousel
   },
   methods: {
-    fetchSampleData() {
-      // return apiService.fetchArtists().then(data => {
-      //   sampleArtists: data;
-      //   debugger;
-      // });
-      // apiService.fetchExhibitions().then(data => {
-      //   sampleExhibitions: data.slice(0, 4);
-      // });
-      // apiService.fetchArtworks().then(data => {
-      //   sampleArtworks: data.slice(0, 4);
-      // });
+    fetchSampleExhibitions() {
+      return apiService.fetchExhibitions().then(exhibitions => {
+        const randomExhibitions = _.map(
+          _.sampleSize(exhibitions, 3),
+          exhibition => {
+            return {
+              id: exhibition.id,
+              title: exhibition.name
+            };
+          }
+        );
+        this.sampleExhibitions = randomExhibitions;
+      });
+    },
+    fetchSampleArtworks() {
+      return apiService.fetchArtworks().then(artworks => {
+        const randomArtworks = _.map(_.sampleSize(artworks, 3), artwork => {
+          return {
+            id: artwork.id,
+            title: artwork.title
+          };
+        });
+        this.sampleArtworks = randomArtworks;
+      });
+    },
+    fetchSampleArtists() {
+      return apiService.fetchArtists().then(artists => {
+        const randomArtists = _.map(_.sampleSize(artists, 3), artist => {
+          return {
+            id: artist.id,
+            title: artist.name
+          };
+        });
+        this.sampleArtists = randomArtists;
+      });
     }
   },
   mounted() {
-    this.fetchSampleData();
+    this.fetchSampleExhibitions();
+    this.fetchSampleArtworks();
+    this.fetchSampleArtists();
   }
 };
 </script>

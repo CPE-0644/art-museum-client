@@ -1,7 +1,7 @@
 <template>
   <el-carousel indicator-position="outside">
-    <el-carousel-item v-for="(item, index) in 4" :key="index">
-      <h3>{{ item }}</h3>
+    <el-carousel-item v-for="(item, index) in items" :key="index">
+      <h3>{{ item.title }}</h3>
     </el-carousel-item>
   </el-carousel>
 </template>

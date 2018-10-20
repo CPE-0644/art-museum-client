@@ -26,6 +26,11 @@ export default new Router({
       component: Artworks
     },
     {
+      path: '/artworks/:artworkTitle',
+      name: 'Artworks',
+      component: Artworks
+    },
+    {
       path: '/artists',
       name: 'Artists',
       component: Artists

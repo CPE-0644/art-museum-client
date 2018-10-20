@@ -45,8 +45,9 @@ export default {
   name: 'Artworks',
   data() {
     return {
+      artworkTitleParam: this.$route.params.artworkTitle,
       showType: 'painting',
-      artworkSearch: '',
+      artworkSearch: this.$route.params.artworkTitle || '',
       filteredArtworks: [],
       artworks: [],
       typeFilter: ['Sculpture', 'Statue', 'Painting', 'Other Types']
@@ -66,7 +67,7 @@ export default {
           ? this.artworks
           : _.filter(this.artworks, artwork => {
               const isShowSculpture =
-                _.includes(this.typeFilter, 'Scultpure') &&
+                _.includes(this.typeFilter, 'Sculpture') &&
                 artwork.style == 'sculpture';
               const isShowStatue =
                 _.includes(this.typeFilter, 'Statue') &&
@@ -83,7 +84,7 @@ export default {
                 isShowPainting ||
                 isShowOther;
               const artworkTitle = artwork.title.toLowerCase();
-              if (isShow) return artworkTitle.indexOf(searchTitle) != -1;
+              if (isShow) return _.includes(artworkTitle, searchTitle);
             });
       this.filteredArtworks = results;
     }

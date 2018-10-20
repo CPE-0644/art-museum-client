@@ -10,8 +10,8 @@
         <div>Style: {{artist.style}}</div>
         <div class="artist-artwork-list">
           Artworks: 
-          <span v-for="(artwork, index) in artworks" :key="index" class="artist-artwork-item">
-            <router-link to="/artworks"> {{artwork.title}} </router-link>
+          <span v-for="(artwork, index) in artworks" :key="index" class="artist-artwork-item" @click="goToArtwork(artwork.title)">
+             {{artwork.title}} 
           </span>
         </div>
       </el-collapse-item>
@@ -38,6 +38,9 @@ export default {
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });
+    },
+    goToArtwork(artworkTitle) {
+      this.$router.push({ path: `/artworks/${artworkTitle}` });
     }
   },
   watch: {

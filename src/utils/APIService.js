@@ -33,4 +33,9 @@ export class APIService {
     const url = `${API_URL}/artists/${id}/arts`;
     return this.fetchUrl(url);
   }
+
+  fetchArtistByArtworkId(id) {
+    const url = `${API_URL}/artworks/${id}/artist`;
+    return this.fetchUrl(url);
+  }
 }

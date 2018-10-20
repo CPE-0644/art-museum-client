@@ -35,6 +35,7 @@
           <el-col :span="8">
             <div class="artwork-dialog-detail">
               <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
+              <div><h5> {{artist.name}} </h5></div>
               <div class="dialog-style"> 
                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
               </div>
@@ -55,11 +56,16 @@
 </template>
 
 <script>
+import { APIService } from '../utils/APIService.js';
+
+const apiService = new APIService();
+
 export default {
   props: ['artwork'],
   name: 'ArtworkCard',
   data() {
     return {
+      artist: {},
       artworkDetail: this.artwork,
       dialogVisible: false
     };
@@ -75,7 +81,15 @@ export default {
     },
     closeArtworkDialog() {
       this.dialogVisible = false;
+    },
+    fetchArtist(id) {
+      return apiService.fetchArtistByArtworkId(id).then(data => {
+        this.artist = data;
+      });
     }
+  },
+  mounted() {
+    this.fetchArtist(this.artworkDetail.artist_id);
   }
 };
 </script>

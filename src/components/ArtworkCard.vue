@@ -26,26 +26,28 @@
       :visible.sync="dialogVisible"
       width="80%"
       >
-      <el-row :gutter="24">
-        <el-col :span="15">
-          <div class="artwork-dialog-image">
-            <img src="../assets/logo.png" class="artwork-image">
-          </div>
-        </el-col>
-        <el-col :span="8">
-          <div class="artwork-dialog-detail">
-            <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
-            <div class="dialog-style"> {{artworkDetail.style}} </div>
-            <div class="dialog-year"> {{artworkDetail.year}} </div>
-            <div class="dialog-description"> {{artworkDetail.description}} </div>
-            <div class="dialog-origin"> {{artworkDetail.origin}} </div>
-            <div class="dialog-epoch"> {{artworkDetail.epoch}} </div>
-          </div>
-        </el-col>
-      </el-row>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="closeArtworkDialog" size="mini" type="danger">Cancel</el-button>
-      </span>
+      <div class="dialog-body">
+        <el-row :gutter="24">
+          <el-col :span="15">
+            <div class="artwork-dialog-image">
+              <img src="../assets/artwork.jpg" class="artwork-image">
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="artwork-dialog-detail">
+              <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
+              <div class="dialog-style"> {{artworkDetail.style}} </div>
+              <div class="dialog-year"> {{artworkDetail.year}} </div>
+              <div class="dialog-description"> {{artworkDetail.description}} </div>
+              <div class="dialog-origin"> {{artworkDetail.origin}} </div>
+              <div class="dialog-epoch"> {{artworkDetail.epoch}} </div>
+            </div>
+          </el-col>
+        </el-row>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="closeArtworkDialog" size="mini" type="danger">Cancel</el-button>
+        </span>
     </el-dialog>
     
   </div>
@@ -82,15 +84,25 @@ div.el-dialog.el-dialog--center {
   height: 80%;
 }
 
+.dialog-body {
+  margin-top: 20px;
+}
+
 .artwork-dialog-detail {
   line-height: 30px;
   text-align: left;
 }
 
+div.el-col.el-col-15 {
+  padding-top: 2em;
+}
+
 .artwork-dialog-image {
   margin: auto;
-  height: 50vh;
   width: 30vw;
+  .artwork-image {
+    max-width: 100%;
+  }
 }
 
 .artwork-card {

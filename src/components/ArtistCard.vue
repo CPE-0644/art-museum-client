@@ -10,8 +10,8 @@
         <div>Style: {{artist.style}}</div>
         <div class="artist-artwork-list">
           Artworks: 
-          <span v-for="(artwork, index) in artworks" :key="index">
-            {{artwork.title}},
+          <span v-for="(artwork, index) in artworks" :key="index" class="artist-artwork-item">
+            <router-link to="/artworks"> {{artwork.title}} </router-link>
           </span>
         </div>
       </el-collapse-item>
@@ -38,7 +38,8 @@ export default {
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });
-    }
+    },
+    directToArtwork(artwork) {}
   },
   watch: {
     artistDetail(newVal) {
@@ -51,7 +52,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.artist-artwork-item {
+  cursor: pointer;
+}
+
 .artist-card .image {
   height: 50px;
   width: 50px;

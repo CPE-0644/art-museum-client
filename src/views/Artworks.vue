@@ -23,7 +23,8 @@
       </div>
 
       <el-button icon="el-icon-search" circle  
-          v-on:click="searchArtwork"></el-button>
+          v-on:click="searchArtwork">
+      </el-button>
       
     </div>
     <div class="body-content">

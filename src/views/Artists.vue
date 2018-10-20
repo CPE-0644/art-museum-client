@@ -27,7 +27,7 @@ export default {
     return {
       artists: [],
       filteredArtists: [],
-      artistSearch: ''
+      artistSearch: this.$route.params.artistName || ''
     };
   },
   components: {

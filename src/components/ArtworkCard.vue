@@ -35,7 +35,7 @@
           <el-col :span="8">
             <div class="artwork-dialog-detail">
               <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
-              <div><h5> {{artist.name}} </h5></div>
+              <div><h5 class="artwork-artist" @click="goToArtist(artist.name)"> {{artist.name}} </h5></div>
               <div class="dialog-style"> 
                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
               </div>
@@ -86,6 +86,9 @@ export default {
       return apiService.fetchArtistByArtworkId(id).then(data => {
         this.artist = data;
       });
+    },
+    goToArtist(artistName) {
+      this.$router.push({ path: `/artists/${artistName}` });
     }
   },
   mounted() {
@@ -126,6 +129,10 @@ div.el-col.el-col-15 {
   .image {
     margin-top: 10px;
   }
+}
+
+.artwork-artist {
+  cursor: pointer;
 }
 
 .artwork-detail {

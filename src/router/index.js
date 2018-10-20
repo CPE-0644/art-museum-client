@@ -34,6 +34,11 @@ export default new Router({
       path: '/artists',
       name: 'Artists',
       component: Artists
+    },
+    {
+      path: '/artists/:artistName',
+      name: 'Artists',
+      component: Artists
     }
   ]
 });

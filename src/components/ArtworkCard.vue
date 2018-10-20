@@ -132,7 +132,12 @@ div.el-col.el-col-15 {
 }
 
 .artwork-artist {
+  color: #909399;
   cursor: pointer;
+}
+
+.artwork-artist:hover {
+  color: #303133;
 }
 
 .artwork-detail {

@@ -16,9 +16,7 @@
                 Shows items: 
               </h6>
               <span class="exhibition-display-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
-                <div>
                   {{artwork.title}}
-                </div>
               </span>
             </div>
             <div class="exhibition-action">
@@ -98,11 +96,16 @@ export default {
 }
 
 .exhibition-display-list {
-  display: block;
+  display: inline;
 }
 
 .exhibition-display-item {
+  color: #909399;
   cursor: pointer;
+}
+
+.exhibition-display-item:hover {
+  color: #303133;
 }
 
 .exhibition-box {

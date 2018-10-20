@@ -56,9 +56,13 @@ export default {
 
 <style lang="scss">
 .artist-artwork-item {
+  color: #909399;
   cursor: pointer;
 }
 
+.artist-artwork-item:hover {
+  color: #303133;
+}
 .artist-card .image {
   height: 50px;
   width: 50px;

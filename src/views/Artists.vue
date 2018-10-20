@@ -5,9 +5,13 @@
       <el-input
         placeholder="Find your favourite Artist"
         v-model="artistSearch"
-        v-on:change="searchArtist"
         clearable>
       </el-input>
+    </div>
+    <div class="icon-search">
+      <el-button icon="el-icon-search" circle  
+            v-on:click="searchArtist">
+      </el-button>
     </div>
     <div class="body-content">
       <artist-list :artists="filteredArtists"></artist-list>
@@ -40,8 +44,8 @@ export default {
         this.filteredArtists = data;
       });
     },
-    searchArtist(searchName) {
-      searchName = searchName.toLowerCase();
+    searchArtist() {
+      const searchName = this.artistSearch.toLowerCase();
       let results = _.filter(this.artists, artist => {
         const artistName = artist.name.toLowerCase();
         return artistName.indexOf(searchName) != -1;
@@ -73,6 +77,10 @@ body
   > div
   > input {
   text-align: center;
+}
+
+.icon-search {
+  margin: 10px;
 }
 
 .artist.search-bar {

@@ -35,7 +35,9 @@
           <el-col :span="8">
             <div class="artwork-dialog-detail">
               <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
-              <div class="dialog-style"> {{artworkDetail.style}} </div>
+              <div class="dialog-style"> 
+                 <el-tag size="mini">{{artworkDetail.style}}</el-tag>
+              </div>
               <div class="dialog-year"> {{artworkDetail.year}} </div>
               <div class="dialog-description"> {{artworkDetail.description}} </div>
               <div class="dialog-origin"> {{artworkDetail.origin}} </div>

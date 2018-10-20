@@ -15,9 +15,9 @@
               <h6>
                 Shows items: 
               </h6>
-              <span class="exhibition-display-item" v-for="(item, index) in artworks" :key="index">
+              <span class="exhibition-display-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
                 <div>
-                  {{item.title}}
+                  {{artwork.title}}
                 </div>
               </span>
             </div>
@@ -56,6 +56,9 @@ export default {
       return apiService.fetchArtworksByExhibitionId(id).then(data => {
         this.artworks = data;
       });
+    },
+    goToArtwork(artworkTitle) {
+      this.$router.push({ path: `/artworks/${artworkTitle}` });
     }
   },
   mounted() {
@@ -96,6 +99,10 @@ export default {
 
 .exhibition-display-list {
   display: block;
+}
+
+.exhibition-display-item {
+  cursor: pointer;
 }
 
 .exhibition-box {

@@ -38,8 +38,7 @@ export default {
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });
-    },
-    directToArtwork(artwork) {}
+    }
   },
   watch: {
     artistDetail(newVal) {

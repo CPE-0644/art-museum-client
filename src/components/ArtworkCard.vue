@@ -5,13 +5,12 @@
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
         <img src="../assets/artwork.jpg" class="image">
         <div >
-          <span><h4> {{this.artworkDetail.title}} </h4></span>
+          <span><h4> {{artworkDetail.title}} </h4></span>
           <div class="artwork-detail">
             <div class="artwork-tag">
               <el-row>
                 <el-col :span="24">
-                  <el-tag size="mini">Tag One</el-tag>
-                  <el-tag size="mini">Tag One</el-tag>
+                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
                 </el-col>
               </el-row>
             </div>

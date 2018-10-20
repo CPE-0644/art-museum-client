@@ -42,7 +42,7 @@ export default {
     },
     searchArtist(searchName) {
       searchName = searchName.toLowerCase();
-      var results = _.filter(this.artists, artist => {
+      let results = _.filter(this.artists, artist => {
         const artistName = artist.name.toLowerCase();
         return artistName.indexOf(searchName) != -1;
       });
@@ -61,6 +61,18 @@ export default {
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 1px 3px rgb(199, 199, 199);
+}
+
+body
+  > div:nth-child(2)
+  > section
+  > main
+  > div
+  > div
+  > div.artist.search-bar
+  > div
+  > input {
+  text-align: center;
 }
 
 .artist.search-bar {

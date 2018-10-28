@@ -4,26 +4,28 @@
       <el-collapse-item :title="artist.name" :name="artist.id">
         <b-container>
           <b-row>
-              <b-col>
+              <b-col class="artist-head">
                 <div>
-                  <img src="../assets/artist.jpg" class="image">
+                  <img v-bind:src="src" class="image">
                 </div>
                 <h3> {{artist.name}} </h3>
               </b-col>
-              <b-col class="artist-detail">
+              <b-col class="artist-detail" cols="9">
                 <h5> Information </h5>
                 <span> {{artist.date_of_birth}} - {{artist.date_of_died}} </span>
                 <div><h6> Country: </h6> {{artist.country}} </div>
+                <div><h6> Epoch: </h6> {{artist.epoch}} </div>
                 <div><h6> Style: </h6> {{artist.style}} </div>
+                <div>{{artist.description}} </div>
               </b-col>
-              <b-col class="artist-artwork">
+              <!-- <b-col class="artist-artwork">
                 <div class="artist-artwork-list">
                   <h5> Artwork </h5> 
                   <div v-for="(artwork, index) in artworks" :key="index" class="artist-artwork-item" @click="goToArtwork(artwork.title)">
                     {{artwork.title}} 
                   </div>
                 </div>
-              </b-col>
+              </b-col> -->
           </b-row>
         </b-container>
       </el-collapse-item>
@@ -42,11 +44,13 @@ export default {
   data() {
     return {
       artist: this.artistDetail,
-      artworks: []
+      artworks: [],
+      src: ''
     };
   },
   methods: {
     fetchArtworksByArtistId(id) {
+      this.src = `http://localhost:3000/images/artists/${id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });
@@ -81,8 +85,9 @@ export default {
   max-height: 150px;
   margin: auto;
 }
+
 .artist-detail {
-  text-align: center;
+  text-align: left;
   margin: auto;
   vertical-align: middle;
   div {

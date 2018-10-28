@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://art-museum-api.herokuapp.com/api';
+// const API_URL = 'https://art-museum-api.herokuapp.com/api';
+const API_URL = 'http://localhost:3000/api';
 
 export class APIService {
   constructor() {}

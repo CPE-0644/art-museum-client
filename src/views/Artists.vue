@@ -61,7 +61,7 @@ export default {
 
 <style>
 .body-content {
-  margin-top: 30px;
+  margin: 0 5vw;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 1px 3px rgb(199, 199, 199);

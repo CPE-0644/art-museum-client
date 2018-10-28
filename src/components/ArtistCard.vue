@@ -2,18 +2,30 @@
   <div class="artist-card">
     <el-collapse>
       <el-collapse-item :title="artist.name" :name="artist.id">
-        <div>
-          <img src="../assets/artist.jpg" class="image">
-        </div>
-        <div>Name: {{artist.name}} Live:{{artist.date_of_birth}} - {{artist.date_of_died}}</div>
-        <div>Born: {{artist.country}}</div>
-        <div>Style: {{artist.style}}</div>
-        <div class="artist-artwork-list">
-          Artworks: 
-          <span v-for="(artwork, index) in artworks" :key="index" class="artist-artwork-item" @click="goToArtwork(artwork.title)">
-             {{artwork.title}} 
-          </span>
-        </div>
+        <b-container>
+          <b-row>
+              <b-col>
+                <div>
+                  <img src="../assets/artist.jpg" class="image">
+                </div>
+                <h3> {{artist.name}} </h3>
+              </b-col>
+              <b-col class="artist-detail">
+                <h5> Information </h5>
+                <span> {{artist.date_of_birth}} - {{artist.date_of_died}} </span>
+                <div><h6> Country: </h6> {{artist.country}} </div>
+                <div><h6> Style: </h6> {{artist.style}} </div>
+              </b-col>
+              <b-col class="artist-artwork">
+                <div class="artist-artwork-list">
+                  <h5> Artwork </h5> 
+                  <div v-for="(artwork, index) in artworks" :key="index" class="artist-artwork-item" @click="goToArtwork(artwork.title)">
+                    {{artwork.title}} 
+                  </div>
+                </div>
+              </b-col>
+          </b-row>
+        </b-container>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -64,8 +76,31 @@ export default {
   color: #303133;
 }
 .artist-card .image {
-  height: 50px;
-  width: 50px;
+  min-width: 100px;
+  max-width: 150px;
+  max-height: 150px;
   margin: auto;
+}
+.artist-detail {
+  text-align: center;
+  margin: auto;
+  vertical-align: middle;
+  div {
+    margin-top: 5px;
+  }
+}
+
+h5 {
+  text-decoration: underline;
+}
+
+.artist-artwork {
+  text-align: center;
+  margin: auto;
+}
+
+h6 {
+  display: inline;
+  font-weight: 100;
 }
 </style>

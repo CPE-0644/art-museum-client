@@ -2,7 +2,6 @@
   <div id="footer">
     <div>
       {{location}}
-
     </div>
     <div>
       {{contact}}
@@ -10,7 +9,6 @@
     <div>
       {{hour}}
     </div>
-    <strong>&copy;2018 — Vuetify</strong>
   </div>
 </template>
 
@@ -29,8 +27,9 @@ export default {
 
 <style>
 #footer {
-  width: 100%;
+  margin: 30px auto;
   text-align: center;
   vertical-align: middle;
+  display: table;
 }
 </style>

@@ -69,7 +69,7 @@ export default {
 .exhibition-box {
   max-height: 250px;
 }
-.image {
+.exhibition-image .image {
   max-width: 150px;
   max-height: 150px;
   width: 100%;

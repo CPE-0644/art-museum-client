@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>Artist</h1>
+    <div class="artist-heading">
+      <div class="artist-page-thumbnail"></div>
+      <div class="center">ARTIST</div>
+    </div>
+
     <div class="artist search-bar">
       <el-input
         placeholder="Find your favourite Artist"
@@ -59,12 +63,41 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .body-content {
   margin: 0 5vw;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 1px 3px rgb(199, 199, 199);
+}
+
+.artist-heading {
+  margin: 20px;
+  margin-bottom: 50px;
+
+  .artist-page-thumbnail {
+    background-image: url('http://localhost:3000/images/thumbnails/artist.jpg');
+    width: 100%;
+    height: 30vw;
+    background-position: center;
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+    border-radius: 5px;
+  }
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8vw;
+    color: white;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 body

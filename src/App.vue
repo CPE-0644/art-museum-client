@@ -9,7 +9,7 @@
         <router-view></router-view>
       </div>
     </el-main>
-  <el-footer height="100px">
+  <el-footer height="150px">
     <Footer />
   </el-footer>
   </el-container>
@@ -57,11 +57,12 @@ $LightBlue: #ecf8ff;
 }
 
 footer.el-footer {
+  vertical-align: middle;
   width: 100%;
   padding: 10px;
   font-size: 0.8em;
-  color: $primary-text-color;
-  background-color: $LightBlue;
+  color: white;
+  background-color: $Blue;
   line-height: 20px;
 }
 </style>

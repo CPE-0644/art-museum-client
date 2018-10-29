@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="artwork-card" @click="dialogVisible = true">
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
         <img src="../assets/artwork.jpg" class="image">
@@ -26,29 +25,50 @@
       width="80%"
       >
       <div class="dialog-body">
-        <el-row :gutter="24">
-          <el-col :span="15">
+        <b-row >
+          <b-col >
             <div class="artwork-dialog-image">
               <img src="../assets/artwork.jpg" class="artwork-image">
-            </div>
-          </el-col>
-          <el-col :span="8">
-            <div class="artwork-dialog-detail">
-              <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
-              <div><h5 class="artwork-artist" @click="goToArtist(artist.name)"> {{artist.name}} </h5></div>
               <div class="dialog-style"> 
                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
               </div>
-              <div class="dialog-year"> {{artworkDetail.year}} </div>
-              <div class="dialog-description"> {{artworkDetail.description}} </div>
-              <div class="dialog-origin"> {{artworkDetail.origin}} </div>
-              <div class="dialog-epoch"> {{artworkDetail.epoch}} </div>
             </div>
-          </el-col>
-        </el-row>
+          </b-col>
+          <b-col >
+            <div class="artwork-dialog-detail">
+              <h1 class="dialog-title"> {{artworkDetail.title}} </h1>
+              <div><h5 class="artwork-artist" @click="goToArtist(artist.name)"> {{artist.name}} </h5></div>
+              <div class="dialog-specify">
+                <el-card shadow="never">  
+                    <i class="material-icons info">info</i> 
+                    <div> Specify infomation by each type </div> 
+                    <div v-if="artworkDetail.style=='sculpture'"> SCULPTURE Material | Height | Weight | Style</div> 
+                    <div v-else-if="artworkDetail.style=='painting'"> PAINTING Paint type | Material | Style </div> 
+                    <div v-else-if="artworkDetail.style=='statue'"> STAUE Style | Type </div> 
+                    <div v-else> OTHER Style | Type</div> 
+                </el-card> 
+              </div>
+             
+              <b-row>
+                <b-col>
+                  <div class="dialog-year"> <i class="material-icons"> today </i> <h6> Year : </h6> {{artworkDetail.year}} </div>
+                </b-col>
+                <b-col>
+                  <div class="dialog-origin"> <i class="material-icons"> language </i> <h6> Origin : </h6> {{artworkDetail.origin}} </div>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <div class="dialog-epoch"> <i class="material-icons"> import_contacts </i> <h6> Epoch : </h6> {{artworkDetail.epoch}} </div>
+                </b-col>
+              </b-row>
+              <div class="dialog-description">  <el-card shadow="never"> <div> {{artworkDetail.description}} </div> </el-card> </div>
+            </div>
+          </b-col>
+        </b-row>
         </div>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="closeArtworkDialog" size="mini" type="danger">Cancel</el-button>
+          <el-button @click="closeArtworkDialog" size="mini" type="danger">CLOSE</el-button>
         </span>
     </el-dialog>
     
@@ -104,11 +124,27 @@ div.el-dialog.el-dialog--center {
 
 .dialog-body {
   margin-top: 20px;
+  .el-card__body {
+    padding: 10px;
+  }
 }
 
 .artwork-dialog-detail {
   line-height: 30px;
-  text-align: left;
+  text-align: center;
+
+  * {
+    vertical-align: middle;
+  }
+
+  .dialog-description,
+  .dialog-specify {
+    margin: 10px auto;
+  }
+}
+
+.dialog-style {
+  margin-top: 10px;
 }
 
 div.el-col.el-col-15 {
@@ -125,9 +161,14 @@ div.el-col.el-col-15 {
 
 .artwork-card {
   cursor: pointer;
-  margin: 10px;
+  margin: 10px auto;
+  max-width: 300px;
+  max-height: 300px;
   .image {
     margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 180px;
+    max-height: 180px;
   }
 }
 

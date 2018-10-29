@@ -1,10 +1,12 @@
 <template>
   <div class="artwork-list">
-    <el-row>
-      <el-col :span="6" v-for="(artwork, index) in artworks" :key="index">
-        <artwork-card :artwork="artwork"/>
-      </el-col>
-    </el-row>
+    <b-container>
+      <b-row>
+        <b-col v-for="(artwork, index) in artworks" :key="index">
+          <artwork-card :artwork="artwork"/>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 

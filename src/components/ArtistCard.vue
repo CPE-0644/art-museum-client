@@ -162,7 +162,7 @@ export default {
   }
 }
 
-h5 {
+.artist-card h5 {
   text-decoration: underline;
 }
 

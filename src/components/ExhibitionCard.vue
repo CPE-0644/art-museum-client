@@ -1,16 +1,16 @@
 <template>
   <div class="exhibition-box">
-    <el-card :body-style="{ padding: '0px'}" shadow="hover">
-      <el-row :gutter="24">
-        <el-col :span="8">
+    <el-card shadow="hover">
+      <b-row >
+        <b-col cols="3">
           <div class="exhibition-image">
             <img src="../assets/exhibition.jpg" class="image">
           </div>
-        </el-col>
-        <el-col :span="15">
+        </b-col>
+        <b-col>
           <div class="exhibition-detail">
             <h1 class="exhibtion-name">{{exhibition.name}}</h1>
-            <h5 class="exhibition-time">{{ exhibition.start_date }} - {{exhibition.end_date}}</h5>
+            <h5 class="exhibition-time"><i class="material-icons"> event </i>{{ exhibition.start_date }} - {{exhibition.end_date}}</h5>
             <div class="exhibition-display-list"> 
               <h6>
                 Shows items: 
@@ -24,8 +24,8 @@
               <el-button type="primary" size="small" round>JOIN NOW</el-button>
             </div>
           </div>
-        </el-col>
-      </el-row>
+        </b-col>
+      </b-row>
     </el-card>
   </div>
 </template>
@@ -66,23 +66,28 @@ export default {
 </script>
 
 <style lang="scss">
-.exhibition-box {
-  max-height: 250px;
-}
-.exhibition-image .image {
-  max-width: 150px;
-  max-height: 150px;
-  width: 100%;
-}
-
 .exhibition-time {
   color: #909399;
   font-weight: 300;
 }
 
 .exhibition-detail {
-  text-align: left;
+  vertical-align: middle;
+  text-align: center;
   padding-bottom: 10px;
+  margin-top: 20px;
+  * {
+    vertical-align: middle;
+  }
+
+  h5 {
+    margin: 20px auto;
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
 }
 
 .exhibition-users {
@@ -91,12 +96,9 @@ export default {
 }
 
 .exhibition-action {
+  margin-top: 20px;
   vertical-align: bottom;
   text-align: right;
-}
-
-.exhibition-display-list {
-  display: inline;
 }
 
 .exhibition-display-item {
@@ -110,15 +112,19 @@ export default {
 
 .exhibition-box {
   margin: 20px;
-  .image {
-    margin-top: 20px;
+  .el-card__body {
+    padding: 10px;
   }
 }
 
 .exhibition-image {
   height: 100%;
-  margin: 20px 20px 20px 40px;
   vertical-align: middle;
-  border-radius: 10px;
+  margin: auto;
+  img {
+    border-radius: 5px;
+    max-width: 200px;
+    max-height: 200px;
+  }
 }
 </style>

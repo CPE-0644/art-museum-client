@@ -39,4 +39,9 @@ export class APIService {
     const url = `${API_URL}/exhibitions`;
     return this.fetchUrl(url);
   }
+
+  fetchCollections() {
+    const url = `${API_URL}/collections`;
+    return this.fetchUrl(url);
+  }
 }

@@ -4,9 +4,10 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 import Home from '@/views/Home.vue';
-import Exhibitions from '@/views/Exhibitions.vue';
-import Artworks from '@/views/Artworks.vue';
-import Artists from '@/views/Artists.vue';
+import Exhibition from '@/views/Exhibition.vue';
+import Artwork from '@/views/Artwork.vue';
+import Artist from '@/views/Artist.vue';
+import Collection from '@/views/Collection.vue';
 
 export default new Router({
   routes: [
@@ -18,27 +19,32 @@ export default new Router({
     {
       path: '/exhibitions',
       name: 'Exhibitions',
-      component: Exhibitions
+      component: Exhibition
     },
     {
       path: '/artworks',
       name: 'Artworks',
-      component: Artworks
+      component: Artwork
     },
     {
       path: '/artworks/:artworkTitle',
       name: 'Artworks',
-      component: Artworks
+      component: Artwork
     },
     {
       path: '/artists',
       name: 'Artists',
-      component: Artists
+      component: Artist
     },
     {
       path: '/artists/:artistName',
       name: 'Artists',
-      component: Artists
+      component: Artist
+    },
+    {
+      path: '/collections',
+      name: 'Collections',
+      component: Collection
     }
   ]
 });

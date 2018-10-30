@@ -54,6 +54,7 @@
 
 <script>
 import { APIService } from '../utils/APIService.js';
+import { IMG_URL } from '../utils/url.js';
 
 const apiService = new APIService();
 
@@ -69,7 +70,7 @@ export default {
   },
   methods: {
     fetchArtworksByArtistId(id) {
-      this.src = `http://localhost:3000/images/artists/${id}.jpg`;
+      this.src = `${IMG_URL}/artists/${id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });

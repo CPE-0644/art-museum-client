@@ -20,7 +20,6 @@
     
     <el-dialog
       top="8vh"
-      :title="artworkDetail.title"
       :visible.sync="dialogVisible"
       width="80%"
       >

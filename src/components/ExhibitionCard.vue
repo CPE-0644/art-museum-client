@@ -16,7 +16,7 @@
                 Shows items: 
               </h6>
               <span class="exhibition-display-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
-                  {{artwork.title}}
+                  {{artwork.title}} /
               </span>
             </div>
             <div class="exhibition-action">

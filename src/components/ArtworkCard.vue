@@ -6,6 +6,7 @@
         <div >
           <span><h4> {{artworkDetail.title}} </h4></span>
           <div class="artwork-detail">
+            {{artist.name}}
             <div class="artwork-tag">
               <el-row>
                 <el-col :span="24">
@@ -103,7 +104,7 @@ export default {
     },
     fetchArtist(id) {
       return apiService.fetchArtistByArtworkId(id).then(data => {
-        this.artist = data;
+        if (data[0]) this.artist = data[0];
       });
     },
     goToArtist(artistName) {
@@ -111,7 +112,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchArtist(this.artworkDetail.artist_id);
+    this.fetchArtist(this.artworkDetail.id);
   }
 };
 </script>

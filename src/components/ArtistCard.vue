@@ -45,6 +45,7 @@
                     </div>
                 </b-col>
             </b-row>
+                  <span v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">{{artwork.title}} / </span>
           </el-card>
         </b-container>
       </el-collapse-item>
@@ -70,7 +71,7 @@ export default {
   },
   methods: {
     fetchArtworksByArtistId(id) {
-      this.src = `${IMG_URL}/artists/${id}.jpg`;
+      // this.src = `${IMG_URL}/artists/${id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });
@@ -85,7 +86,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchArtworksByArtistId(this.artist.id);
+    this.fetchArtworksByArtistId(this.artistDetail.id);
   }
 };
 </script>

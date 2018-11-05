@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// const API_URL = 'https://art-museum-api.herokuapp.com/api';
 import { API_URL } from './url';
 
 export class APIService {
@@ -25,13 +24,8 @@ export class APIService {
     return this.fetchUrl(url);
   }
 
-  fetchArtworksByExhibitionId(id) {
-    const url = `${API_URL}/exhibitions/${id}/shows`;
-    return this.fetchUrl(url);
-  }
-
   fetchArtworksByArtistId(id) {
-    const url = `${API_URL}/artists/${id}/arts`;
+    const url = `${API_URL}/artists/${id}/artworks`;
     return this.fetchUrl(url);
   }
 
@@ -40,8 +34,23 @@ export class APIService {
     return this.fetchUrl(url);
   }
 
+  fetchArtworksByExhibitionId(id) {
+    const url = `${API_URL}/exhibitions/${id}/artworks`;
+    return this.fetchUrl(url);
+  }
+
   fetchCollections() {
     const url = `${API_URL}/collections`;
+    return this.fetchUrl(url);
+  }
+
+  fetchUsers() {
+    const url = `${API_URL}/users`;
+    return this.fetchUrl(url);
+  }
+
+  fetchUserById(id) {
+    const url = `${API_URL}/users/${id}`;
     return this.fetchUrl(url);
   }
 }

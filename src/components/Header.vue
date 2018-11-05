@@ -7,7 +7,8 @@
     <el-menu-item index="3" route="/exhibitions">Exhibitions</el-menu-item>
     <el-menu-item index="4" route="/artists">Artists</el-menu-item>
     <el-menu-item index="5" route="/collections">Collections</el-menu-item>
-    <el-menu-item index="6" route="/users" disabled>Users</el-menu-item>
+    <el-menu-item index="6" route="/register">Sign Up</el-menu-item>
+    <el-menu-item index="7" route="/login">Sign In</el-menu-item>
   </el-menu>
 </div>
 </template>

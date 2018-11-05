@@ -49,6 +49,20 @@ export class APIService {
     return this.fetchUrl(url);
   }
 
+  createUser(signUpForm) {
+    const url = `${API_URL}/users`;
+    return axios.post(url, {
+      name: signUpForm.name,
+      username: signUpForm.username,
+      password: signUpForm.password,
+      address: signUpForm.address,
+      email: signUpForm.email,
+      interested: signUpForm.interested,
+      phone: signUpForm.phone,
+      age: signUpForm.age
+    });
+  }
+
   fetchUserById(id) {
     const url = `${API_URL}/users/${id}`;
     return this.fetchUrl(url);

@@ -8,6 +8,7 @@ import Exhibition from '@/views/Exhibition.vue';
 import Artwork from '@/views/Artwork.vue';
 import Artist from '@/views/Artist.vue';
 import Collection from '@/views/Collection.vue';
+import SignUp from '@/views/SignUp.vue';
 
 export default new Router({
   routes: [
@@ -45,6 +46,11 @@ export default new Router({
       path: '/collections',
       name: 'Collections',
       component: Collection
+    },
+    {
+      path: '/register',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
 });

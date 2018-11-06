@@ -11,6 +11,8 @@ import Collection from '@/views/Collection.vue';
 import SignUp from '@/views/SignUp.vue';
 import SignIn from '@/views/SignIn.vue';
 
+import ArtworkEdit from '@/views/ArtworkEdit.vue';
+
 export default new Router({
   routes: [
     {
@@ -27,6 +29,11 @@ export default new Router({
       path: '/artworks',
       name: 'Artworks',
       component: Artwork
+    },
+    {
+      path: '/artworks/:artworkId/edit',
+      name: 'ArtworkEdit',
+      component: ArtworkEdit
     },
     {
       path: '/artworks/:artworkTitle',

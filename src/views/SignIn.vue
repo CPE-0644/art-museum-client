@@ -60,11 +60,12 @@ export default {
           apiService.authUser(this.signIn).then(res => {
             this.logInSuccess = true;
             this.user = res.data;
+            localStorage.setItem('isLoggedIn', true);
             localStorage.setItem(
               'loggedInAs',
               JSON.stringify({
                 name: this.user.Name,
-                role: this.user.role,
+                isAdmin: this.user.isAdmin,
                 id: this.user.id,
                 username: this.user.username
               })

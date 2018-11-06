@@ -7,15 +7,34 @@
     <el-menu-item index="3" route="/exhibitions">Exhibitions</el-menu-item>
     <el-menu-item index="4" route="/artists">Artists</el-menu-item>
     <el-menu-item index="5" route="/collections">Collections</el-menu-item>
-    <el-menu-item index="6" route="/register">Sign Up</el-menu-item>
+    <el-menu-item index="6" route="/register" v-if="!isLoggedIn">Register</el-menu-item>
     <el-menu-item index="7" route="/login">Sign In</el-menu-item>
+    <el-menu-item index="8" v-if="isLoggedIn" @click="logOut">Sign Out</el-menu-item>
+    {{isLoggedIn()}}
   </el-menu>
 </div>
 </template>
 
 <script>
+import { APIService } from '../utils/APIService.js';
+
+const apiService = new APIService();
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    isLoggedIn() {
+      return localStorage.getItem('isLoggedIn') == 'true';
+    },
+    logOut() {
+      apiService.logOutUser().then(res => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('loggedInAs');
+        alert('logout!');
+        this.$router.push('/');
+      });
+    }
+  }
 };
 </script>
 

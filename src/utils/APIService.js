@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { API_URL } from './url';
 
+// axios.defaults.withCredentials = true;
 export class APIService {
   constructor() {}
 
@@ -21,6 +22,11 @@ export class APIService {
 
   fetchArtworks() {
     const url = `${API_URL}/artworks`;
+    return this.fetchUrl(url);
+  }
+
+  fetchArtwork(id) {
+    const url = `${API_URL}/artworks/${id}`;
     return this.fetchUrl(url);
   }
 
@@ -69,6 +75,21 @@ export class APIService {
       username: signInForm.username,
       password: signInForm.password
     });
+  }
+
+  logOutUser() {
+    const url = `${API_URL}/logout`;
+    return axios.get(url);
+  }
+
+  updateArtwork(id, editedArtwork) {
+    const url = `${API_URL}/artworks/${id}`;
+    return axios.put(url, editedArtwork);
+  }
+
+  deleteArtwork(id) {
+    const url = `${API_URL}/artworks/${id}`;
+    return axios.delete(url);
   }
 
   fetchUserById(id) {

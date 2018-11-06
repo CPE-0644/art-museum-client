@@ -32,6 +32,14 @@
               <div class="dialog-style"> 
                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
               </div>
+              <div class="artwork-edit-delete">
+                <div class="artwork-edit">
+                  <i class="el-icon-edit" @click="editArtwork(artworkDetail.id)"></i>
+                </div>
+                <div class="artwork-delete">
+                  <i class="el-icon-delete" @click="deleteArtwork(artworkDetail.id)"></i>
+                </div>
+              </div>
             </div>
           </b-col>
           <b-col >
@@ -113,6 +121,12 @@ export default {
     },
     goToArtist(artistName) {
       this.$router.push({ path: `/artists/${artistName}` });
+    },
+    editArtwork(id) {
+      this.$router.push({ path: `artworks/${id}/edit` });
+    },
+    deleteArtwork(id) {
+      apiService.deleteArtwork(id);
     }
   },
   mounted() {
@@ -131,6 +145,11 @@ div.el-dialog.el-dialog--center {
   .el-card__body {
     padding: 10px;
   }
+}
+
+.artwork-edit-delete i {
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .artwork-dialog-detail {

@@ -1,6 +1,10 @@
 <template>
   <div class="exhibition-box">
     <el-card shadow="hover">
+      <div class="exhibition-edit-delete">
+          <i class="el-icon-edit black" @click="editExhibition(exhibition.id)"></i>
+          <i class="el-icon-delete red" @click="deleteExhibition(exhibition.id)"></i>
+        </div>
       <b-row >
         <b-col cols="3">
           <div class="exhibition-image">
@@ -70,6 +74,12 @@ export default {
     },
     goToArtwork(artworkTitle) {
       this.$router.push({ path: `/artworks/${artworkTitle}` });
+    },
+    editExhibition(id) {
+      this.$router.push({ path: `exhibitions/${id}/edit` });
+    },
+    deleteExhibition(id) {
+      apiService.deleteArtwork(id);
     }
   },
   mounted() {
@@ -82,6 +92,24 @@ export default {
 .exhibition-time {
   color: #909399;
   font-weight: 300;
+}
+
+.exhibition-edit-delete {
+  text-align: right;
+  margin-right: 20px;
+  i {
+    color: lightgray;
+    font-size: 22px;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+
+  i.black:hover {
+    color: black;
+  }
+  i.red:hover {
+    color: red;
+  }
 }
 
 .exhibition-detail {

@@ -13,6 +13,7 @@ import SignIn from '@/views/SignIn.vue';
 
 import ArtworkCreate from '@/views/ArtworkCreate.vue';
 import ArtworkEdit from '@/views/ArtworkEdit.vue';
+import ExhibitionEdit from '@/views/ExhibitionEdit.vue';
 
 export default new Router({
   routes: [
@@ -25,6 +26,11 @@ export default new Router({
       path: '/exhibitions',
       name: 'Exhibitions',
       component: Exhibition
+    },
+    {
+      path: '/exhibitions/:exhibitionId/edit',
+      name: 'ExhibitionEdit',
+      component: ExhibitionEdit
     },
     {
       path: '/artworks',

@@ -35,6 +35,11 @@ export class APIService {
     return this.fetchUrl(url);
   }
 
+  fetchExhibition(id) {
+    const url = `${API_URL}/exhibitions/${id}`;
+    return this.fetchUrl(url);
+  }
+
   fetchExhibitions() {
     const url = `${API_URL}/exhibitions`;
     return this.fetchUrl(url);
@@ -90,6 +95,11 @@ export class APIService {
   updateArtwork(id, editedArtwork) {
     const url = `${API_URL}/artworks/${id}`;
     return axios.put(url, editedArtwork);
+  }
+
+  updateExhibition(id, editExhibition) {
+    const url = `${API_URL}/exhibitions/${id}`;
+    return axios.put(url, editExhibition);
   }
 
   deleteArtwork(id) {

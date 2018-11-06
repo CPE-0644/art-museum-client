@@ -32,14 +32,6 @@
               <div class="dialog-style"> 
                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
               </div>
-              <div class="artwork-edit-delete">
-                <div class="artwork-edit">
-                  <i class="el-icon-edit" @click="editArtwork(artworkDetail.id)"></i>
-                </div>
-                <div class="artwork-delete">
-                  <i class="el-icon-delete" @click="deleteArtwork(artworkDetail.id)"></i>
-                </div>
-              </div>
             </div>
           </b-col>
           <b-col >
@@ -74,6 +66,10 @@
             </div>
           </b-col>
         </b-row>
+        </div>
+        <div class="artwork-edit-delete">
+          <i class="el-icon-edit black" @click="editArtwork(artworkDetail.id)"></i>
+          <i class="el-icon-delete red" @click="deleteArtwork(artworkDetail.id)"></i>
         </div>
         <span slot="footer" class="dialog-footer">
           <el-button @click="closeArtworkDialog" size="mini" type="danger">CLOSE</el-button>
@@ -147,9 +143,22 @@ div.el-dialog.el-dialog--center {
   }
 }
 
-.artwork-edit-delete i {
-  font-size: 22px;
-  cursor: pointer;
+.artwork-edit-delete {
+  text-align: right;
+  margin-right: 20px;
+  i {
+    color: lightgray;
+    font-size: 22px;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+
+  i.black:hover {
+    color: black;
+  }
+  i.red:hover {
+    color: red;
+  }
 }
 
 .artwork-dialog-detail {

@@ -22,9 +22,10 @@
         </el-checkbox-group>
       </div>
 
-      <el-button icon="el-icon-search" circle  
-          v-on:click="searchArtwork">
-      </el-button>
+      <div class="artwork-activitiy-button">
+        <el-button icon="el-icon-search" circle v-on:click="searchArtwork"> </el-button>
+        <el-button class="el-icon-plus" circle @click="createArtwork"></el-button>
+      </div>
       
     </div>
     <div class="body-content">
@@ -60,6 +61,9 @@ export default {
         this.artworks = data;
         this.filteredArtworks = data;
       });
+    },
+    createArtwork() {
+      this.$router.push({ path: `artworks/new` });
     },
     searchArtwork() {
       const searchTitle = this.artworkSearch.toLowerCase();
@@ -104,6 +108,10 @@ export default {
   .search-bar {
     margin: 0 10vw;
   }
+}
+
+.artwork-activitiy-button {
+  margin-bottom: 30px;
 }
 
 body

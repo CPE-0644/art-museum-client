@@ -82,6 +82,11 @@ export class APIService {
     return axios.get(url);
   }
 
+  createArtwork(newArtwork) {
+    const url = `${API_URL}/artworks`;
+    return axios.post(url, newArtwork);
+  }
+
   updateArtwork(id, editedArtwork) {
     const url = `${API_URL}/artworks/${id}`;
     return axios.put(url, editedArtwork);

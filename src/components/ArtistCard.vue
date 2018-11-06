@@ -45,7 +45,14 @@
                     </div>
                 </b-col>
             </b-row>
-                  <span v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">{{artwork.title}} / </span>
+            <h6>
+              Sample Artworks: 
+            </h6>
+            <el-card shadow="never">
+              <span class="artist-artwork-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
+                  <img v-bind:src='artwork.src' :title="artwork.title"/>
+              </span>
+            </el-card>
           </el-card>
         </b-container>
       </el-collapse-item>
@@ -74,6 +81,13 @@ export default {
       this.src = `${IMG_URL}/artists/${id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
+
+        this.artworks = _.map(this.artworks, artwork => {
+          return {
+            title: artwork.title,
+            src: `${IMG_URL}/artworks/${artwork.id}.jpg`
+          };
+        });
       });
     },
     goToArtwork(artworkTitle) {
@@ -93,12 +107,12 @@ export default {
 
 <style lang="scss">
 .artist-artwork-item {
-  color: #909399;
   cursor: pointer;
-}
-
-.artist-artwork-item:hover {
-  color: #303133;
+  img {
+    height: 60px;
+    width: 60px;
+    margin: 3px;
+  }
 }
 
 .artist-head {

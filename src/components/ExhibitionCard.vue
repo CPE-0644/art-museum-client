@@ -13,11 +13,13 @@
             <h5 class="exhibition-time"><i class="material-icons"> event </i>{{ exhibition.start_date }} - {{exhibition.end_date}}</h5>
             <div class="exhibition-display-list"> 
               <h6>
-                Shows items: 
+                Sample Artworks: 
               </h6>
-              <span class="exhibition-display-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
-                  {{artwork.title}} /
-              </span>
+                <el-card shadow="never">
+                  <span class="exhibition-display-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
+                      <img v-bind:src='artwork.src' :title="artwork.title"/>
+                  </span>
+                </el-card>
             </div>
             <div class="exhibition-action">
               <a class="exhibition-users">{{exhibition.supported}} seats left</a>
@@ -31,8 +33,9 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
+import _ from 'lodash';
 
+import { APIService } from '../utils/APIService.js';
 import { IMG_URL } from '../utils/url.js';
 
 const apiService = new APIService();
@@ -53,10 +56,16 @@ export default {
   },
   methods: {
     fetchArtworksByExhibitionId(id) {
-      this.src = `${IMG_URL}/artworks/${id}.jpg`;
-
+      this.src = `${IMG_URL}/exhibitions/${id}.jpg`;
       return apiService.fetchArtworksByExhibitionId(id).then(data => {
         this.artworks = data;
+
+        this.artworks = _.map(this.artworks, artwork => {
+          return {
+            title: artwork.title,
+            src: `${IMG_URL}/artworks/${artwork.id}.jpg`
+          };
+        });
       });
     },
     goToArtwork(artworkTitle) {
@@ -108,6 +117,12 @@ export default {
 .exhibition-display-item {
   color: #909399;
   cursor: pointer;
+
+  img {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+  }
 }
 
 .exhibition-display-item:hover {

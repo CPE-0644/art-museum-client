@@ -122,7 +122,9 @@ export default {
       this.$router.push({ path: `artworks/${id}/edit` });
     },
     deleteArtwork(id) {
-      apiService.deleteArtwork(id);
+      apiService
+        .deleteArtwork(id)
+        .then(res => this.$router.push({ path: 'artworks' }));
     }
   },
   mounted() {

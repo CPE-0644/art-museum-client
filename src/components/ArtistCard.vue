@@ -97,7 +97,9 @@ export default {
       this.$router.push({ path: `/artworks/${artworkTitle}` });
     },
     deleteArtist(id) {
-      apiService.deleteArtist(id);
+      apiService
+        .deleteArtist(id)
+        .then(res => this.$router.push({ path: 'artists' }));
     }
   },
   watch: {

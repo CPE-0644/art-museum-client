@@ -107,6 +107,11 @@ export class APIService {
     return axios.delete(url);
   }
 
+  deleteExhibition(id) {
+    const url = `${API_URL}/exhibitions/${id}`;
+    return axios.delete(url);
+  }
+
   fetchUserById(id) {
     const url = `${API_URL}/users/${id}`;
     return this.fetchUrl(url);

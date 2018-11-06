@@ -112,6 +112,11 @@ export class APIService {
     return axios.delete(url);
   }
 
+  deleteArtist(id) {
+    const url = `${API_URL}/artists/${id}`;
+    return axios.delete(url);
+  }
+
   deleteExhibition(id) {
     const url = `${API_URL}/exhibitions/${id}`;
     return axios.delete(url);

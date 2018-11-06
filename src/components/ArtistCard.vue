@@ -4,6 +4,10 @@
       <el-collapse-item :title="artist.name" :name="artist.id">
         <b-container>
           <el-card shadow="hover">
+          <div class="artist-edit-delete">
+            <i class="el-icon-edit black" @click="editArtist(artist.id)"></i>
+            <i class="el-icon-delete red" @click="deleteArtist(artist.id)"></i>
+          </div>
             <b-row>
                 <b-col class="artist-head">
                   <el-card :body-style="{ padding: '0px' }" shadow="hover">
@@ -92,6 +96,9 @@ export default {
     },
     goToArtwork(artworkTitle) {
       this.$router.push({ path: `/artworks/${artworkTitle}` });
+    },
+    deleteArtist(id) {
+      apiService.deleteArtist(id);
     }
   },
   watch: {
@@ -112,6 +119,24 @@ export default {
     height: 60px;
     width: 60px;
     margin: 3px;
+  }
+}
+
+.artist-edit-delete {
+  text-align: right;
+  margin-right: 20px;
+  i {
+    color: lightgray;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+
+  i.black:hover {
+    color: black;
+  }
+  i.red:hover {
+    color: red;
   }
 }
 

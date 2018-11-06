@@ -99,7 +99,7 @@ export default {
   margin-right: 20px;
   i {
     color: lightgray;
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
     margin: 0 20px;
   }

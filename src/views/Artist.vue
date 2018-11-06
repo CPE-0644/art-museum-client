@@ -5,7 +5,7 @@
       <div class="center">ARTIST</div>
     </div> -->
      <h1>
-      Artworks
+      Artists
     </h1>
 
     <div class="artist search-bar">

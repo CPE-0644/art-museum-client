@@ -4,7 +4,7 @@
       <b-row >
         <b-col cols="3">
           <div class="exhibition-image">
-            <img src="../assets/exhibition.jpg" class="image">
+            <img v-bind:src="src" class="image">
           </div>
         </b-col>
         <b-col>
@@ -33,6 +33,8 @@
 <script>
 import { APIService } from '../utils/APIService.js';
 
+import { IMG_URL } from '../utils/url.js';
+
 const apiService = new APIService();
 
 export default {
@@ -51,6 +53,8 @@ export default {
   },
   methods: {
     fetchArtworksByExhibitionId(id) {
+      this.src = `${IMG_URL}/artworks/${id}.jpg`;
+
       return apiService.fetchArtworksByExhibitionId(id).then(data => {
         this.artworks = data;
       });

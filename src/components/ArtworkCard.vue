@@ -2,7 +2,7 @@
   <div>
     <div class="artwork-card" @click="dialogVisible = true">
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
-        <img src="../assets/artwork.jpg" class="image">
+        <img v-bind:src="src" class="image">
         <div >
           <span><h4> {{artworkDetail.title}} </h4></span>
           <div class="artwork-detail">
@@ -28,7 +28,7 @@
         <b-row >
           <b-col >
             <div class="artwork-dialog-image">
-              <img src="../assets/artwork.jpg" class="artwork-image">
+              <img v-bind:src="src" class="artwork-image">
               <div class="dialog-style"> 
                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
               </div>
@@ -78,6 +78,8 @@
 <script>
 import { APIService } from '../utils/APIService.js';
 
+import { IMG_URL } from '../utils/url.js';
+
 const apiService = new APIService();
 
 export default {
@@ -87,7 +89,8 @@ export default {
     return {
       artist: {},
       artworkDetail: this.artwork,
-      dialogVisible: false
+      dialogVisible: false,
+      src: ''
     };
   },
   watch: {
@@ -103,6 +106,7 @@ export default {
       this.dialogVisible = false;
     },
     fetchArtist(id) {
+      this.src = `${IMG_URL}/artworks/${id}.jpg`;
       return apiService.fetchArtistByArtworkId(id).then(data => {
         if (data[0]) this.artist = data[0];
       });
@@ -161,14 +165,13 @@ div.el-col.el-col-15 {
 
 .artwork-card {
   cursor: pointer;
-  margin: 10px auto;
+  margin: 30px auto;
   max-width: 300px;
   max-height: 300px;
   .image {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    max-width: 180px;
-    max-height: 180px;
+    padding: 10px;
+    width: 150px;
+    height: 150px;
   }
 }
 

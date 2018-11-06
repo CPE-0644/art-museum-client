@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div class="artist-heading">
+    <!-- <div class="artist-heading">
       <div class="artist-page-thumbnail"></div>
       <div class="center">ARTIST</div>
-    </div>
+    </div> -->
+     <h1>
+      Artworks
+    </h1>
 
     <div class="artist search-bar">
       <el-input

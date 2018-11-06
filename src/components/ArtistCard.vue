@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     fetchArtworksByArtistId(id) {
-      // this.src = `${IMG_URL}/artists/${id}.jpg`;
+      this.src = `${IMG_URL}/artists/${id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
       });

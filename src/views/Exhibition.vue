@@ -3,6 +3,11 @@
     <h1>
       Exhibition  
     </h1>
+
+    <div class="exhibition-activitiy-button">
+      <el-button class="el-icon-plus" circle @click="createExhibition"></el-button>
+    </div>
+
     <div class="body-content">
       <ExhibitionList :exhibitionDetailList="exhibitions"/>
     </div>
@@ -31,6 +36,9 @@ export default {
       return apiService.fetchExhibitions().then(data => {
         this.exhibitions = data;
       });
+    },
+    createExhibition() {
+      this.$router.push({ path: `exhibitions/new` });
     }
   },
   mounted() {
@@ -40,4 +48,7 @@ export default {
 </script>
 
 <style>
+.exhibition-activitiy-button {
+  margin: 30px;
+}
 </style>

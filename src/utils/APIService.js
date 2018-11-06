@@ -92,6 +92,11 @@ export class APIService {
     return axios.post(url, newArtwork);
   }
 
+  createExhibition(newExhibition) {
+    const url = `${API_URL}/exhibitions`;
+    return axios.post(url, newExhibition);
+  }
+
   updateArtwork(id, editedArtwork) {
     const url = `${API_URL}/artworks/${id}`;
     return axios.put(url, editedArtwork);

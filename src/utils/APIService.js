@@ -63,6 +63,14 @@ export class APIService {
     });
   }
 
+  authUser(signInForm) {
+    const url = `${API_URL}/auth`;
+    return axios.post(url, {
+      username: signInForm.username,
+      password: signInForm.password
+    });
+  }
+
   fetchUserById(id) {
     const url = `${API_URL}/users/${id}`;
     return this.fetchUrl(url);

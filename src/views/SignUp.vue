@@ -137,7 +137,7 @@ export default {
 </script>
 
 <style lang="scss">
-._sign_up_page {
-  padding: 50px;
+._sign_up_form {
+  margin: 0 120px 0 100px;
 }
 </style>

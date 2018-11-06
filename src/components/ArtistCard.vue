@@ -5,7 +5,6 @@
         <b-container>
           <el-card shadow="hover">
           <div class="artist-edit-delete">
-            <i class="el-icon-edit black" @click="editArtist(artist.id)"></i>
             <i class="el-icon-delete red" @click="deleteArtist(artist.id)"></i>
           </div>
             <b-row>

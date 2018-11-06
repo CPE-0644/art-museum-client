@@ -11,6 +11,7 @@ import Collection from '@/views/Collection.vue';
 import SignUp from '@/views/SignUp.vue';
 import SignIn from '@/views/SignIn.vue';
 
+import ArtistCreate from '@/views/ArtistCreate.vue';
 import ArtworkCreate from '@/views/ArtworkCreate.vue';
 import ArtworkEdit from '@/views/ArtworkEdit.vue';
 import ExhibitionCreate from '@/views/ExhibitionCreate.vue';
@@ -62,6 +63,11 @@ export default new Router({
       path: '/artists',
       name: 'Artists',
       component: Artist
+    },
+    {
+      path: '/artists/new',
+      name: 'ArtistCreate',
+      component: ArtistCreate
     },
     {
       path: '/artists/:artistName',

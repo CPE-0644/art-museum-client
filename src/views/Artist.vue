@@ -15,11 +15,12 @@
         clearable>
       </el-input>
     </div>
-    <div class="icon-search">
-      <el-button icon="el-icon-search" circle  
-            v-on:click="searchArtist">
-      </el-button>
+
+    <div class="artist-activitiy-button">
+      <el-button icon="el-icon-search" circle @click="searchArtist"> </el-button>
+      <el-button class="el-icon-plus" circle @click="createArtist"></el-button>
     </div>
+
     <div class="body-content">
       <artist-list :artists="filteredArtists"></artist-list>
     </div>
@@ -51,6 +52,9 @@ export default {
         this.filteredArtists = data;
       });
     },
+    createArtist() {
+      this.$router.push({ path: 'artists/new' });
+    },
     searchArtist() {
       const searchName = this.artistSearch.toLowerCase();
       let results = _.filter(this.artists, artist => {
@@ -72,6 +76,10 @@ export default {
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 1px 3px rgb(199, 199, 199);
+}
+
+.artist-activitiy-button {
+  margin: 30px;
 }
 
 .artist-heading {

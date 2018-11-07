@@ -20,6 +20,18 @@
       <el-form-item label="Description" prop="description">
         <el-input type="textarea" v-model="artworkEdit.description"></el-input>
       </el-form-item>
+       <el-form-item label="Artist">
+        <el-select v-model="artworkEdit.artist_id" placeholder="Select Artist">
+          <el-option
+            v-for="artist in artists"
+            :key="artist.id"
+            :label="artist.name"
+            :value="artist.id">
+            <span style="float: left">{{ artist.name }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px">{{ artist.id }}</span>
+          </el-option>
+        </el-select>
+      </el-form-item >
       <el-form-item>
         <el-button type="primary" @click="submitForm('artworkEdit')">Submit</el-button>
       </el-form-item>
@@ -38,6 +50,7 @@ export default {
   name: 'ArtworkEdit',
   data() {
     return {
+      artists: [],
       artworkId: this.$route.params.artworkId,
       artworkEdit: {
         id: '',
@@ -46,7 +59,7 @@ export default {
         description: '',
         origin: '',
         epoch: '',
-        artist_id: []
+        artist_id: ''
       },
       rules: {
         year: [{ required: true, trigger: 'blur' }],
@@ -62,6 +75,11 @@ export default {
       if (!auth.isAdmin()) {
         this.$router.push('/');
       }
+    },
+    fetchArtists() {
+      return apiService.fetchArtists().then(data => {
+        this.artists = data;
+      });
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
@@ -80,13 +98,15 @@ export default {
     },
     fetchArtwork(id) {
       apiService.fetchArtwork(id).then(data => {
-        this.artworkEdit = data[0];
+        this.artworkEdit = data;
+        this.artworkEdit.artist_id = data.artist_id;
       });
     }
   },
   mounted() {
     this.returnNotAdmin();
     this.fetchArtwork(this.artworkId);
+    this.fetchArtists();
   }
 };
 </script>

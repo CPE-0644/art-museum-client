@@ -86,9 +86,7 @@ export default {
       this.$router.push({ path: `exhibitions/${id}/edit` });
     },
     deleteExhibition(id) {
-      apiService
-        .deleteArtwork(id)
-        .then(res => this.$router.push({ path: 'exhibitions' }));
+      apiService.deleteExhibition(id).then(res => this.$router.push('/'));
     }
   },
   mounted() {

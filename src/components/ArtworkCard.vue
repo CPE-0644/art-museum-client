@@ -4,13 +4,13 @@
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
         <img v-bind:src="src" class="image">
         <div >
-          <span><h4> {{artworkDetail.title}} </h4></span>
+          <span><h5> {{artworkDetail.title}} </h5></span>
           <div class="artwork-detail">
             {{artist.name}}
             <div class="artwork-tag">
               <el-row>
                 <el-col :span="24">
-                  <el-tag size="mini">{{artworkDetail.style}}</el-tag>
+                  <el-tag size="mini">{{artworkDetail.artwork_type}}</el-tag>
                 </el-col>
               </el-row>
             </div>
@@ -30,7 +30,7 @@
             <div class="artwork-dialog-image">
               <img v-bind:src="src" class="artwork-image">
               <div class="dialog-style"> 
-                 <el-tag size="mini">{{artworkDetail.style}}</el-tag>
+                 <el-tag size="mini">{{artworkDetail.artwork_type}}</el-tag>
               </div>
             </div>
           </b-col>
@@ -41,10 +41,21 @@
               <div class="dialog-specify">
                 <el-card shadow="never">  
                     <i class="material-icons info">info</i> 
-                    <div> Specify infomation by each type </div> 
-                    <div v-if="artworkDetail.style=='sculpture'"> SCULPTURE Material | Height | Weight | Style</div> 
-                    <div v-else-if="artworkDetail.style=='painting'"> PAINTING Paint type | Material | Style </div> 
-                    <div v-else-if="artworkDetail.style=='statue'"> STAUE Style | Type </div> 
+                    <div v-if="artworkDetail.artwork_type=='sculpture'||artworkDetail.artwork_type=='statue'"> 
+                      <b>Material </b> {{artworkSpecifyDetail.material}} | 
+                      <b>Height</b> {{artworkSpecifyDetail.height}} | 
+                      <b>Weight</b> {{artworkSpecifyDetail.weight}} | 
+                      <b>Style</b> {{artworkSpecifyDetail.style}}
+                      </div> 
+                    <div v-else-if="artworkDetail.artwork_type=='painting'"> 
+                      <b>Paint type</b> {{artworkSpecifyDetail.paint_type}} |
+                      <b>Material</b> {{artworkSpecifyDetail.drawn_on}} |
+                      <b>Style</b> {{artworkSpecifyDetail.style}} 
+                      </div> 
+                    <div v-else-if="artworkDetail.artwork_type=='other'"> 
+                      <b>Style</b> {{artworkSpecifyDetail.style}} |
+                      <b>Type</b> {{artworkSpecifyDetail.type}} 
+                    </div> 
                     <div v-else> OTHER Style | Type</div> 
                 </el-card> 
               </div>
@@ -93,6 +104,7 @@ export default {
   data() {
     return {
       artist: {},
+      artworkSpecifyDetail: {},
       artworkDetail: this.artwork,
       dialogVisible: false,
       src: ''
@@ -113,6 +125,12 @@ export default {
     closeArtworkDialog() {
       this.dialogVisible = false;
     },
+    fetchArtwork(id) {
+      this.src = `${IMG_URL}/artworks/${id}.jpg`;
+      return apiService.fetchArtwork(id).then(data => {
+        this.artworkSpecifyDetail = data;
+      });
+    },
     fetchArtist(id) {
       this.src = `${IMG_URL}/artworks/${id}.jpg`;
       return apiService.fetchArtistByArtworkId(id).then(data => {
@@ -132,6 +150,7 @@ export default {
     }
   },
   mounted() {
+    this.fetchArtwork(this.artworkDetail.id);
     this.fetchArtist(this.artworkDetail.id);
   }
 };

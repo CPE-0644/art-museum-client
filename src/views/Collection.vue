@@ -3,22 +3,8 @@
     <h1>
       Collections
     </h1>
-    <div class="artwork serach-filter">
-      <div class="search-bar">
-        <el-input
-          placeholder="Find your favourite Artwork"
-          v-model="artworkSearch"
-          clearable>
-        </el-input>
-      </div>
-      
-      <el-button icon="el-icon-search" circle  
-          v-on:click="searchArtwork">
-      </el-button>
-      
-    </div>
 
-    <div class="body-content">
+    <div class="body-content collection">
       <collection-list :collections="collections" ></collection-list>
     </div>
 
@@ -34,7 +20,7 @@ import { APIService } from '../utils/APIService.js';
 const apiService = new APIService();
 
 export default {
-  name: 'Artworks',
+  name: 'Collections',
   data() {
     return {
       collections: []
@@ -57,4 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
+.body-content.collection {
+  margin: 0;
+}
 </style>

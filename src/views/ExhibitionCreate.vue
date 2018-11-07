@@ -27,6 +27,7 @@
 
 <script>
 import { APIService } from '../utils/APIService.js';
+import auth from '../utils/auth';
 
 const apiService = new APIService();
 
@@ -51,6 +52,11 @@ export default {
     };
   },
   methods: {
+    returnNotAdmin() {
+      if (!auth.isAdmin()) {
+        this.$router.push('/');
+      }
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -67,6 +73,9 @@ export default {
         this.$router.push('/exhibitions');
       });
     }
+  },
+  mounted() {
+    this.returnNotAdmin();
   }
 };
 </script>

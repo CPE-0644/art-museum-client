@@ -1,7 +1,7 @@
 <template>
   <div class="exhibition-box">
     <el-card shadow="hover">
-      <div class="exhibition-edit-delete">
+      <div class="exhibition-edit-delete" v-if="isAdmin()">
           <i class="el-icon-edit black" @click="editExhibition(exhibition.id)"></i>
           <i class="el-icon-delete red" @click="deleteExhibition(exhibition.id)"></i>
         </div>
@@ -41,6 +41,7 @@ import _ from 'lodash';
 
 import { APIService } from '../utils/APIService.js';
 import { IMG_URL } from '../utils/url.js';
+import auth from '../utils/auth';
 
 const apiService = new APIService();
 
@@ -59,6 +60,9 @@ export default {
     }
   },
   methods: {
+    isAdmin() {
+      return auth.isAdmin();
+    },
     fetchArtworksByExhibitionId(id) {
       this.src = `${IMG_URL}/exhibitions/${id}.jpg`;
       return apiService.fetchArtworksByExhibitionId(id).then(data => {

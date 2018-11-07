@@ -22,7 +22,7 @@
 
 <script>
 import { APIService } from '../utils/APIService.js';
-
+import auth from '../utils/auth.js';
 const apiService = new APIService();
 
 export default {
@@ -56,21 +56,12 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('submit!');
           apiService.authUser(this.signIn).then(res => {
+            alert('submit!');
             this.logInSuccess = true;
             this.user = res.data;
-            localStorage.setItem('isLoggedIn', true);
-            localStorage.setItem(
-              'loggedInAs',
-              JSON.stringify({
-                name: this.user.Name,
-                isAdmin: this.user.isAdmin,
-                id: this.user.id,
-                username: this.user.username
-              })
-            );
-            if (this.logInSuccess) this.$router.push('/');
+            auth.signIn(this.user);
+            this.$router.push('/');
           });
         } else {
           console.log('error submit!!');

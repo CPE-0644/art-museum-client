@@ -30,6 +30,7 @@
 
 <script>
 import { APIService } from '../utils/APIService.js';
+import auth from '../utils/auth';
 
 const apiService = new APIService();
 
@@ -57,6 +58,11 @@ export default {
     };
   },
   methods: {
+    returnNotAdmin() {
+      if (!auth.isAdmin()) {
+        this.$router.push('/');
+      }
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -79,6 +85,7 @@ export default {
     }
   },
   mounted() {
+    this.returnNotAdmin();
     this.fetchArtwork(this.artworkId);
   }
 };

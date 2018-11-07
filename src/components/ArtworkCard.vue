@@ -67,7 +67,7 @@
           </b-col>
         </b-row>
         </div>
-        <div class="artwork-edit-delete">
+        <div class="artwork-edit-delete" v-if="isAdmin()">
           <i class="el-icon-edit black" @click="editArtwork(artworkDetail.id)"></i>
           <i class="el-icon-delete red" @click="deleteArtwork(artworkDetail.id)"></i>
         </div>
@@ -83,6 +83,7 @@
 import { APIService } from '../utils/APIService.js';
 
 import { IMG_URL } from '../utils/url.js';
+import auth from '../utils/auth';
 
 const apiService = new APIService();
 
@@ -103,6 +104,9 @@ export default {
     }
   },
   methods: {
+    isAdmin() {
+      return auth.isAdmin();
+    },
     showArtworkDialog() {
       this.dialogVisible = true;
     },

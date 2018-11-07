@@ -24,7 +24,7 @@
 
       <div class="artwork-activitiy-button">
         <el-button icon="el-icon-search" circle v-on:click="searchArtwork"> </el-button>
-        <el-button class="el-icon-plus" circle @click="createArtwork"></el-button>
+        <el-button class="el-icon-plus" v-if="isAdmin()" circle @click="createArtwork"></el-button>
       </div>
       
     </div>
@@ -41,6 +41,8 @@ import _ from 'lodash';
 import ArtworkList from '../components/ArtworkList';
 import { APIService } from '../utils/APIService.js';
 
+import auth from '../utils/auth';
+
 const apiService = new APIService();
 
 export default {
@@ -56,6 +58,9 @@ export default {
     };
   },
   methods: {
+    isAdmin() {
+      return auth.isAdmin();
+    },
     fetchArtworks() {
       return apiService.fetchArtworks().then(data => {
         this.artworks = data;

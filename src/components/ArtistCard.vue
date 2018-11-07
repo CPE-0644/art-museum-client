@@ -4,7 +4,7 @@
       <el-collapse-item :title="artist.name" :name="artist.id">
         <b-container>
           <el-card shadow="hover">
-          <div class="artist-edit-delete">
+          <div class="artist-edit-delete" v-if="isAdmin()">
             <i class="el-icon-delete red" @click="deleteArtist(artist.id)"></i>
           </div>
             <b-row>
@@ -66,6 +66,7 @@
 <script>
 import { APIService } from '../utils/APIService.js';
 import { IMG_URL } from '../utils/url.js';
+import auth from '../utils/auth';
 
 const apiService = new APIService();
 
@@ -80,6 +81,9 @@ export default {
     };
   },
   methods: {
+    isAdmin() {
+      return auth.isAdmin();
+    },
     fetchArtworksByArtistId(id) {
       this.src = `${IMG_URL}/artists/${id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {

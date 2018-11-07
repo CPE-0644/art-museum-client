@@ -18,7 +18,7 @@
 
     <div class="artist-activitiy-button">
       <el-button icon="el-icon-search" circle @click="searchArtist"> </el-button>
-      <el-button class="el-icon-plus" circle @click="createArtist"></el-button>
+      <el-button class="el-icon-plus" circle @click="createArtist" v-if="isAdmin()"></el-button>
     </div>
 
     <div class="body-content">
@@ -31,6 +31,7 @@
 import _ from 'lodash';
 import ArtistList from '../components/ArtistList';
 import { APIService } from '../utils/APIService.js';
+import auth from '../utils/auth';
 const apiService = new APIService();
 
 export default {
@@ -46,6 +47,9 @@ export default {
     ArtistList
   },
   methods: {
+    isAdmin() {
+      return auth.isAdmin();
+    },
     fetchArtists() {
       return apiService.fetchArtists().then(data => {
         this.artists = data;

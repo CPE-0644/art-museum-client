@@ -7,29 +7,33 @@
     <el-menu-item index="3" route="/exhibitions">Exhibitions</el-menu-item>
     <el-menu-item index="4" route="/artists">Artists</el-menu-item>
     <el-menu-item index="5" route="/collections">Collections</el-menu-item>
-    <el-menu-item index="6" route="/register" v-if="!isLoggedIn">Register</el-menu-item>
-    <el-menu-item index="7" route="/login">Sign In</el-menu-item>
-    <el-menu-item index="8" v-if="isLoggedIn" @click="logOut">Sign Out</el-menu-item>
-    {{isLoggedIn()}}
+    <el-menu-item index="6" route="/register" v-if="!isLoggedIn()">Register</el-menu-item>
+    <el-menu-item index="7" route="/login" v-if="isLoggedIn()">Sign In</el-menu-item>
+    <el-menu-item index="8" v-if="isLoggedIn()" @click="logOut">Sign Out</el-menu-item>
+    log in: {{isLoggedIn()}}
+    is admin : {{isAdmin()}}
   </el-menu>
 </div>
 </template>
 
 <script>
 import { APIService } from '../utils/APIService.js';
+import auth from '../utils/auth.js';
 
 const apiService = new APIService();
 
 export default {
   name: 'Header',
   methods: {
+    isAdmin() {
+      return auth.isAdmin();
+    },
     isLoggedIn() {
-      return localStorage.getItem('isLoggedIn') == 'true';
+      return auth.isLoggedIn();
     },
     logOut() {
-      apiService.logOutUser().then(res => {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('loggedInAs');
+      return apiService.logOutUser().then(res => {
+        auth.signOut();
         alert('logout!');
         this.$router.push('/');
       });

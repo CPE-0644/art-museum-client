@@ -72,30 +72,24 @@ export default {
     },
     searchArtwork() {
       const searchTitle = this.artworkSearch.toLowerCase();
-      const results =
-        searchTitle == ''
-          ? this.artworks
-          : _.filter(this.artworks, artwork => {
-              const isShowSculpture =
-                _.includes(this.typeFilter, 'Sculpture') &&
-                artwork.artwork_type == 'sculpture';
-              const isShowStatue =
-                _.includes(this.typeFilter, 'Statue') &&
-                artwork.artwork_type == 'statue';
-              const isShowPainting =
-                _.includes(this.typeFilter, 'Painting') &
-                (artwork.artwork_type == 'painting');
-              const isShowOther =
-                _.includes(this.typeFilter, 'Other Types') &&
-                artwork.artwork_type == 'other';
-              const isShow =
-                isShowSculpture ||
-                isShowStatue ||
-                isShowPainting ||
-                isShowOther;
-              const artworkTitle = artwork.title.toLowerCase();
-              if (isShow) return _.includes(artworkTitle, searchTitle);
-            });
+      const results = _.filter(this.artworks, artwork => {
+        const isShowSculpture =
+          _.includes(this.typeFilter, 'Sculpture') &&
+          artwork.artwork_type == 'sculpture';
+        const isShowStatue =
+          _.includes(this.typeFilter, 'Statue') &&
+          artwork.artwork_type == 'statue';
+        const isShowPainting =
+          _.includes(this.typeFilter, 'Painting') &
+          (artwork.artwork_type == 'painting');
+        const isShowOther =
+          _.includes(this.typeFilter, 'Other Types') &&
+          artwork.artwork_type == 'other';
+        const isShow =
+          isShowSculpture || isShowStatue || isShowPainting || isShowOther;
+        const artworkTitle = artwork.title.toLowerCase();
+        if (isShow) return _.includes(artworkTitle, searchTitle);
+      });
       this.filteredArtworks = results;
     }
   },

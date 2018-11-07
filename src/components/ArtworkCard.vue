@@ -10,7 +10,10 @@
             <div class="artwork-tag">
               <el-row>
                 <el-col :span="24">
-                  <el-tag size="mini">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" v-if="artworkDetail.artwork_type == 'painting'">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" type="success" v-else-if="artworkDetail.artwork_type == 'statue'">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" type="warning" v-else-if="artworkDetail.artwork_type == 'sculpture'">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" type="info" v-else>{{artworkDetail.artwork_type}}</el-tag>
                 </el-col>
               </el-row>
             </div>
@@ -30,8 +33,11 @@
             <div class="artwork-dialog-image">
               <img v-bind:src="src" class="artwork-image">
               <div class="dialog-style"> 
-                 <el-tag size="mini">{{artworkDetail.artwork_type}}</el-tag>
-              </div>
+                  <el-tag size="mini" v-if="artworkDetail.artwork_type == 'painting'">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" type="success" v-else-if="artworkDetail.artwork_type == 'statue'">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" type="warning" v-else-if="artworkDetail.artwork_type == 'sculpture'">{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag size="mini" type="info" v-else>{{artworkDetail.artwork_type}}</el-tag>
+                </div>
             </div>
           </b-col>
           <b-col >

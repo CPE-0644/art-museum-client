@@ -25,8 +25,8 @@
                   </span>
                 </el-card>
             </div>
-            <div class="exhibition-action" v-if="exhibition.supported_visitor > 0">
-              <a class="exhibition-users">{{exhibition.supported_visitor}} seats left</a>
+            <div class="exhibition-action" v-if="exhibitionInfo.seats_left > 0">
+              <a class="exhibition-users">{{exhibitionInfo.seats_left}} seats left</a>
               <el-button type="primary" size="small" round>JOIN NOW</el-button>
             </div>
             <div class="exhibition-action" v-else>
@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       exhibition: this.exhibitionDetail,
+      exhibitionInfo: '',
       artworks: []
     };
   },
@@ -65,6 +66,11 @@ export default {
   methods: {
     isAdmin() {
       return auth.isAdmin();
+    },
+    fetchExhibitionUsers(id) {
+      return apiService.fetchExhibitionUsers(id).then(data => {
+        this.exhibitionInfo = data;
+      });
     },
     fetchArtworksByExhibitionId(id) {
       this.src = `${IMG_URL}/exhibitions/${id}.jpg`;
@@ -91,6 +97,7 @@ export default {
   },
   mounted() {
     this.fetchArtworksByExhibitionId(this.exhibition.id);
+    this.fetchExhibitionUsers(this.exhibition.id);
   }
 };
 </script>

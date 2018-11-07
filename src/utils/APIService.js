@@ -40,6 +40,11 @@ export class APIService {
     return this.fetchUrl(url);
   }
 
+  fetchExhibitionUsers(id) {
+    const url = `${API_URL}/exhibitions/${id}/users`;
+    return this.fetchUrl(url);
+  }
+
   fetchExhibitions() {
     const url = `${API_URL}/exhibitions`;
     return this.fetchUrl(url);

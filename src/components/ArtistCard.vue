@@ -85,7 +85,7 @@ export default {
       return auth.isAdmin();
     },
     fetchArtworksByArtistId(id) {
-      this.src = `${IMG_URL}/artists/${id}.jpg`;
+      this.src = `${IMG_URL}/artists/${this.artistDetail.id}.jpg`;
       return apiService.fetchArtworksByArtistId(id).then(data => {
         this.artworks = data;
 
@@ -124,6 +124,7 @@ export default {
     height: 60px;
     width: 60px;
     margin: 3px;
+    border-radius: 3px;
   }
 }
 

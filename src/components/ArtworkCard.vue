@@ -132,7 +132,6 @@ export default {
       });
     },
     fetchArtist(id) {
-      this.src = `${IMG_URL}/artworks/${id}.jpg`;
       return apiService.fetchArtistByArtworkId(id).then(data => {
         if (data[0]) this.artist = data[0];
       });

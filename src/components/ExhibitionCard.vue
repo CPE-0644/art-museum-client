@@ -14,7 +14,7 @@
         <b-col>
           <div class="exhibition-detail">
             <h1 class="exhibtion-name">{{exhibition.name}}</h1>
-            <h5 class="exhibition-time"><i class="material-icons"> event </i>{{ exhibition.start_date }} - {{exhibition.end_date}}</h5>
+            <h5 class="exhibition-time"><i class="material-icons"> event </i> {{ exhibition.start_date }} to {{exhibition.end_date}}</h5>
             <div class="exhibition-display-list"> 
               <h6>
                 Sample Artworks: 
@@ -25,9 +25,12 @@
                   </span>
                 </el-card>
             </div>
-            <div class="exhibition-action">
-              <a class="exhibition-users">{{exhibition.supported}} seats left</a>
+            <div class="exhibition-action" v-if="exhibition.supported_visitor > 0">
+              <a class="exhibition-users">{{exhibition.supported_visitor}} seats left</a>
               <el-button type="primary" size="small" round>JOIN NOW</el-button>
+            </div>
+            <div class="exhibition-action" v-else>
+              <el-button type="primary" size="small" disabled>FULL</el-button>
             </div>
           </div>
         </b-col>
@@ -156,6 +159,7 @@ export default {
     width: 50px;
     height: 50px;
     margin: 3px;
+    border-radius: 3px;
   }
 }
 

@@ -78,16 +78,16 @@ export default {
           : _.filter(this.artworks, artwork => {
               const isShowSculpture =
                 _.includes(this.typeFilter, 'Sculpture') &&
-                artwork.style == 'sculpture';
+                artwork.artwork_type == 'sculpture';
               const isShowStatue =
                 _.includes(this.typeFilter, 'Statue') &&
-                artwork.style == 'statue';
+                artwork.artwork_type == 'statue';
               const isShowPainting =
                 _.includes(this.typeFilter, 'Painting') &
-                (artwork.style == 'painting');
+                (artwork.artwork_type == 'painting');
               const isShowOther =
                 _.includes(this.typeFilter, 'Other Types') &&
-                artwork.style == 'other-art-object';
+                artwork.artwork_type == 'other';
               const isShow =
                 isShowSculpture ||
                 isShowStatue ||

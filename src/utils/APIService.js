@@ -136,4 +136,10 @@ export class APIService {
     const url = `${API_URL}/users/${id}`;
     return this.fetchUrl(url);
   }
+
+  postUserJoinExhibition(exhibitionId) {
+    const url = `${API_URL}/exhibitions/${exhibitionId}/users`;
+    const museum_goer_id = localStorage.getItem('userId');
+    return axios.post(url, { museum_goer_id: museum_goer_id });
+  }
 }

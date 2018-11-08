@@ -91,7 +91,6 @@ export default {
         name: [{ required: true, message: 'Please input your name' }],
         email: [
           {
-            required: true,
             message: 'Please input email address',
             trigger: 'blur'
           },
@@ -110,10 +109,7 @@ export default {
           }
         ],
         phone: [{ type: 'number' }],
-        age: [
-          { required: true, message: 'age is required' },
-          { type: 'number', message: 'age must be a number' }
-        ]
+        age: [{ type: 'number', message: 'age must be a number' }]
       }
     };
   },

@@ -27,7 +27,7 @@
             </div>
             <div class="exhibition-action" v-if="exhibitionInfo.seats_left > 0">
               <a class="exhibition-users">{{exhibitionInfo.seats_left}} seats left</a>
-              <el-button type="primary" size="small" round>JOIN NOW</el-button>
+              <el-button type="primary" size="small" round @click="userJoinExhibition(exhibition.id)" :disabled="isUserAlreadyJoined()">JOIN NOW</el-button>
             </div>
             <div class="exhibition-action" v-else>
               <el-button type="primary" size="small" disabled>FULL</el-button>
@@ -55,7 +55,8 @@ export default {
     return {
       exhibition: this.exhibitionDetail,
       exhibitionInfo: '',
-      artworks: []
+      artworks: [],
+      joinedUsersId: []
     };
   },
   watch: {
@@ -64,12 +65,24 @@ export default {
     }
   },
   methods: {
+    isUserAlreadyJoined() {
+      if (!this.isLoggedIn) return false;
+      const thisUserId = parseInt(localStorage.getItem('userId'));
+      if (_.includes(this.joinedUsersId, thisUserId)) return true;
+      return false;
+    },
     isAdmin() {
       return auth.isAdmin();
+    },
+    isLoggedIn() {
+      return auth.isLoggedIn();
     },
     fetchExhibitionUsers(id) {
       return apiService.fetchExhibitionUsers(id).then(data => {
         this.exhibitionInfo = data;
+        this.joinedUsersId = _.map(data.users, user => {
+          return user.id;
+        });
       });
     },
     fetchArtworksByExhibitionId(id) {
@@ -84,6 +97,15 @@ export default {
           };
         });
       });
+    },
+    userJoinExhibition(exhibitionId) {
+      if (!this.isLoggedIn()) this.$router.push('/login');
+      else {
+        return apiService.postUserJoinExhibition(exhibitionId).then(res => {
+          alert(`Join exhibition ${this.exhibition.name} succeed !`);
+          this.$router.push('/');
+        });
+      }
     },
     goToArtwork(artworkTitle) {
       this.$router.push({ path: `/artworks/${artworkTitle}` });

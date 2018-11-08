@@ -54,12 +54,19 @@ export default {
       artworkSearch: this.$route.params.artworkTitle || '',
       filteredArtworks: [],
       artworks: [],
-      typeFilter: ['Sculpture', 'Statue', 'Painting', 'Other Types']
+      typeFilter: ['Sculpture', 'Statue', 'Painting', 'Other']
     };
   },
   methods: {
     isAdmin() {
       return auth.isAdmin();
+    },
+    isLoggedIn() {
+      return auth.isLoggedIn();
+    },
+    setInterestedArtworkTypes() {
+      if (this.isLoggedIn())
+        this.typeFilter = [localStorage.getItem('userInterested')];
     },
     fetchArtworks() {
       return apiService.fetchArtworks().then(data => {
@@ -83,7 +90,7 @@ export default {
           _.includes(this.typeFilter, 'Painting') &
           (artwork.artwork_type == 'painting');
         const isShowOther =
-          _.includes(this.typeFilter, 'Other Types') &&
+          _.includes(this.typeFilter, 'Other') &&
           artwork.artwork_type == 'other';
         const isShow =
           isShowSculpture || isShowStatue || isShowPainting || isShowOther;
@@ -97,6 +104,7 @@ export default {
     ArtworkList
   },
   mounted() {
+    this.setInterestedArtworkTypes();
     this.fetchArtworks();
   }
 };

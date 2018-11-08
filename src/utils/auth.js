@@ -14,8 +14,12 @@ function signIn(user) {
 }
 
 function signOut() {
-  localStorage.removeItem('isLoggedIn');
-  localStorage.removeItem('loggedInAs');
+  localStorage.clear();
+  // localStorage.removeItem('isLoggedIn');
+  // localStorage.removeItem('loggedInAs');
+  // localStorage.removeItem('userName');
+  // localStorage.removeItem('userId');
+  // localStorage.removeItem('userInterested');
 }
 
 export default { isLoggedIn, isAdmin, signIn, signOut };

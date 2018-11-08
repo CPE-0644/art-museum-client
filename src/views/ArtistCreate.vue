@@ -55,8 +55,8 @@ export default {
       },
       rules: {
         name: [{ required: true, trigger: 'blur' }],
-        date_of_birth: [{ trigger: 'blur' }],
-        date_of_died: [{ trigger: 'blur' }],
+        date_of_birth: [{ required: true, trigger: 'blur' }],
+        date_of_died: [{ required: true, trigger: 'blur' }],
         country: [{ trigger: 'blur' }],
         epoch: [{ trigger: 'blur' }],
         style: [{ trigger: 'blur' }],

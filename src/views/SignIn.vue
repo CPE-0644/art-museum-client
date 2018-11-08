@@ -38,14 +38,14 @@ export default {
       rules: {
         username: [
           {
-            required: true,
+            // required: true,
             message: 'Please input username',
             trigger: 'blur'
           }
         ],
         password: [
           {
-            required: true,
+            // required: true,
             message: 'Please input password'
           }
         ]
@@ -61,6 +61,10 @@ export default {
             this.logInSuccess = true;
             this.user = res.data;
             auth.signIn(this.user);
+            apiService.fetchUserById(this.user.id).then(data => {
+              localStorage.setItem('userInterested', data[0].interested);
+            });
+
             this.$router.push('/');
           });
         } else {

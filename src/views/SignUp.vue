@@ -22,7 +22,7 @@
         <el-checkbox label="Sculpture" name="interested"></el-checkbox>
         <el-checkbox label="Painting" name="interested"></el-checkbox>
         <el-checkbox label="Statue" name="interested"></el-checkbox>
-        <el-checkbox label="Others" name="interested"></el-checkbox>
+        <el-checkbox label="Other" name="interested"></el-checkbox>
       </el-checkbox-group>
     </el-form-item>
     <el-form-item label="Address" prop="address">
@@ -109,7 +109,7 @@ export default {
           }
         ],
         phone: [{ type: 'number' }],
-        age: [{ type: 'number', message: 'age must be a number' }]
+        age: [{ type: 'number ', message: 'age must be a number' }]
       }
     };
   },

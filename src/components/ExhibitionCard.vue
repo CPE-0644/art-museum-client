@@ -1,11 +1,23 @@
 <template>
   <div class="exhibition-box">
+    <el-dialog title="Delete Exhibition" :visible.sync="removeDialogVisible" width="30%">
+      <span>
+        Are you sure to
+        <span style="color:red;">delete</span> exhibition
+        <h6>{{exhibition.name}}</h6>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="removeDialogVisible = false">Cancel</el-button>
+        <el-button type="danger" @click="deleteExhibition(exhibition.id)">Delete</el-button>
+      </span>
+    </el-dialog>
+
     <el-card shadow="hover">
       <div class="exhibition-edit-delete" v-if="isAdmin()">
-          <i class="el-icon-edit black" @click="editExhibition(exhibition.id)"></i>
-          <i class="el-icon-delete red" @click="deleteExhibition(exhibition.id)"></i>
-        </div>
-      <b-row >
+        <i class="el-icon-edit black" @click="editExhibition(exhibition.id)"></i>
+        <i class="el-icon-delete red" @click="removeDialogVisible = true"></i>
+      </div>
+      <b-row>
         <b-col cols="3">
           <div class="exhibition-image">
             <img v-bind:src="src" class="image">
@@ -14,20 +26,32 @@
         <b-col>
           <div class="exhibition-detail">
             <h1 class="exhibtion-name">{{exhibition.name}}</h1>
-            <h5 class="exhibition-time"><i class="material-icons"> event </i> {{ exhibition.start_date }} to {{exhibition.end_date}}</h5>
-            <div class="exhibition-display-list"> 
-              <h6>
-                Sample Artworks: 
-              </h6>
-                <el-card shadow="never">
-                  <span class="exhibition-display-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
-                      <img v-bind:src='artwork.src' :title="artwork.title"/>
-                  </span>
-                </el-card>
+            <h5 class="exhibition-time">
+              <i class="material-icons">event</i>
+              {{ exhibition.start_date }} to {{exhibition.end_date}}
+            </h5>
+            <div class="exhibition-display-list">
+              <h6>Sample Artworks:</h6>
+              <el-card shadow="never">
+                <span
+                  class="exhibition-display-item"
+                  v-for="(artwork, index) in artworks"
+                  :key="index"
+                  @click="goToArtwork(artwork.title)"
+                >
+                  <img v-bind:src="artwork.src" :title="artwork.title">
+                </span>
+              </el-card>
             </div>
             <div class="exhibition-action" v-if="exhibitionInfo.seats_left > 0">
               <a class="exhibition-users">{{exhibitionInfo.seats_left}} seats left</a>
-              <el-button type="primary" size="small" round @click="userJoinExhibition(exhibition.id)" :disabled="isUserAlreadyJoined()">JOIN NOW</el-button>
+              <el-button
+                type="primary"
+                size="small"
+                round
+                @click="userJoinExhibition(exhibition.id)"
+                :disabled="isUserAlreadyJoined()"
+              >JOIN NOW</el-button>
             </div>
             <div class="exhibition-action" v-else>
               <el-button type="primary" size="small" disabled>FULL</el-button>
@@ -40,23 +64,24 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import _ from "lodash";
 
-import { APIService } from '../utils/APIService.js';
-import { IMG_URL } from '../utils/url.js';
-import auth from '../utils/auth';
+import { APIService } from "../utils/APIService.js";
+import { IMG_URL } from "../utils/url.js";
+import auth from "../utils/auth";
 
 const apiService = new APIService();
 
 export default {
-  props: ['exhibitionDetail'],
-  name: 'ExhibitionBox',
+  props: ["exhibitionDetail"],
+  name: "ExhibitionBox",
   data() {
     return {
       exhibition: this.exhibitionDetail,
-      exhibitionInfo: '',
+      exhibitionInfo: "",
       artworks: [],
-      joinedUsersId: []
+      joinedUsersId: [],
+      removeDialogVisible: false
     };
   },
   watch: {
@@ -67,7 +92,7 @@ export default {
   methods: {
     isUserAlreadyJoined() {
       if (!this.isLoggedIn) return false;
-      const thisUserId = parseInt(localStorage.getItem('userId'));
+      const thisUserId = parseInt(localStorage.getItem("userId"));
       if (_.includes(this.joinedUsersId, thisUserId)) return true;
       return false;
     },
@@ -99,11 +124,11 @@ export default {
       });
     },
     userJoinExhibition(exhibitionId) {
-      if (!this.isLoggedIn()) this.$router.push('/login');
+      if (!this.isLoggedIn()) this.$router.push("/login");
       else {
         return apiService.postUserJoinExhibition(exhibitionId).then(res => {
           alert(`Join exhibition ${this.exhibition.name} succeed !`);
-          this.$router.push('/');
+          this.$router.push("/");
         });
       }
     },
@@ -114,7 +139,8 @@ export default {
       this.$router.push({ path: `exhibitions/${id}/edit` });
     },
     deleteExhibition(id) {
-      apiService.deleteExhibition(id).then(res => this.$router.push('/'));
+      this.removeDialogVisible = false;
+      apiService.deleteExhibition(id).then(res => this.$router.push("/"));
     }
   },
   mounted() {

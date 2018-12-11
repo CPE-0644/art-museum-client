@@ -1,59 +1,90 @@
 <template>
   <div class="artist-card">
+    <el-dialog title="Delete Artist" :visible.sync="removeDialogVisible" width="30%">
+      <span>
+        Are you sure to
+        <span style="color:red;">delete</span> artist
+        <h6>{{artist.name}}</h6>
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="removeDialogVisible = false">Cancel</el-button>
+        <el-button type="danger" @click="deleteArtist(artist.id)">Delete</el-button>
+      </span>
+    </el-dialog>
+
     <el-collapse>
       <el-collapse-item :title="artist.name" :name="artist.id">
         <b-container>
           <el-card shadow="hover">
-          <div class="artist-edit-delete" v-if="isAdmin()">
-            <i class="el-icon-delete red" @click="deleteArtist(artist.id)"></i>
-          </div>
+            <div class="artist-edit-delete" v-if="isAdmin()">
+              <i class="el-icon-delete red" @click="removeDialogVisible = true"></i>
+            </div>
             <b-row>
-                <b-col class="artist-head">
-                  <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                    <img v-bind:src="src" class="image">
-                    <div style="padding: 14px;">
-                      <span style="font-size:20px">{{artist.name}}</span>
-                      <div class="bottom clearfix">
-                        <time class="time">  
-                          <span style="color: #777;">{{artist.date_of_birth}}</span> to
-                          <span style="color: #777;" v-if="artist.date_of_died == '0000-00-00'">NOW</span>  
-                          <span style="color: #777;" v-else>{{artist.date_of_died}}</span>  
-                        </time>
+              <b-col class="artist-head">
+                <el-card :body-style="{ padding: '0px' }" shadow="hover">
+                  <img v-bind:src="src" class="image">
+                  <div style="padding: 14px;">
+                    <span style="font-size:20px">{{artist.name}}</span>
+                    <div class="bottom clearfix">
+                      <time class="time">
+                        <span style="color: #777;">{{artist.date_of_birth}}</span> to
+                        <span style="color: #777;" v-if="artist.date_of_died == '0000-00-00'">NOW</span>
+                        <span style="color: #777;" v-else>{{artist.date_of_died}}</span>
+                      </time>
+                    </div>
+                  </div>
+                </el-card>
+              </b-col>
+              <b-col class="artist-detail" cols="9">
+                <!-- <h5> Information </h5> -->
+                <div class="information">
+                  <b-row>
+                    <b-col>
+                      <div class="center">
+                        <h3>{{artist.name}}</h3>
                       </div>
-                    </div>
-                  </el-card>
-                </b-col>
-                <b-col class="artist-detail" cols="9">  
-                    <!-- <h5> Information </h5> -->
-                    <div class="information">
-                      <b-row>
-                        <b-col>
-                          <div class="center">
-                            <h3>{{artist.name}}</h3>
-                          </div>
-                        </b-col>
-                      </b-row>
-                      <b-row>
-                        <b-col>
-                          <div> <i class="material-icons"> language </i> <h6> Country : </h6> {{artist.country}} </div>
-                        </b-col>
-                        <b-col>
-                          <div><i class="material-icons"> today </i><h6> Epoch: </h6> {{artist.epoch}} </div>
-                        </b-col>
-                        <b-col>
-                          <div><i class="material-icons"> import_contacts </i><h6> Style: </h6> {{artist.style}} </div>
-                        </b-col>
-                      </b-row>
-                      <div class="description">  <el-card shadow="never"> <div> {{artist.description}} </div> </el-card> </div>
-                    </div>
-                </b-col>
+                    </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col>
+                      <div>
+                        <i class="material-icons">language</i>
+                        <h6>Country :</h6>
+                        {{artist.country}}
+                      </div>
+                    </b-col>
+                    <b-col>
+                      <div>
+                        <i class="material-icons">today</i>
+                        <h6>Epoch:</h6>
+                        {{artist.epoch}}
+                      </div>
+                    </b-col>
+                    <b-col>
+                      <div>
+                        <i class="material-icons">import_contacts</i>
+                        <h6>Style:</h6>
+                        {{artist.style}}
+                      </div>
+                    </b-col>
+                  </b-row>
+                  <div class="description">
+                    <el-card shadow="never">
+                      <div>{{artist.description}}</div>
+                    </el-card>
+                  </div>
+                </div>
+              </b-col>
             </b-row>
-            <h6>
-              Sample Artworks: 
-            </h6>
+            <h6>Sample Artworks:</h6>
             <el-card shadow="never">
-              <span class="artist-artwork-item" v-for="(artwork, index) in artworks" :key="index" @click="goToArtwork(artwork.title)">
-                  <img v-bind:src='artwork.src' :title="artwork.title"/>
+              <span
+                class="artist-artwork-item"
+                v-for="(artwork, index) in artworks"
+                :key="index"
+                @click="goToArtwork(artwork.title)"
+              >
+                <img v-bind:src="artwork.src" :title="artwork.title">
               </span>
             </el-card>
           </el-card>
@@ -64,20 +95,21 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import { IMG_URL } from '../utils/url.js';
-import auth from '../utils/auth';
+import { APIService } from "../utils/APIService.js";
+import { IMG_URL } from "../utils/url.js";
+import auth from "../utils/auth";
 
 const apiService = new APIService();
 
 export default {
-  props: ['artistDetail'],
-  name: 'ArtworkCard',
+  props: ["artistDetail"],
+  name: "ArtworkCard",
   data() {
     return {
+      removeDialogVisible: false,
       artist: this.artistDetail,
       artworks: [],
-      src: ''
+      src: ""
     };
   },
   methods: {
@@ -101,7 +133,8 @@ export default {
       this.$router.push({ path: `/artworks/${artworkTitle}` });
     },
     deleteArtist(id) {
-      apiService.deleteArtist(id).then(res => this.$router.push('/'));
+      this.removeDialogVisible = false;
+      apiService.deleteArtist(id).then(res => this.$router.push("/"));
     }
   },
   watch: {
@@ -199,7 +232,7 @@ export default {
   .clearfix:before,
   .clearfix:after {
     display: table;
-    content: '';
+    content: "";
   }
 
   .clearfix:after {

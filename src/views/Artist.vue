@@ -40,7 +40,8 @@ export default {
     return {
       artists: [],
       filteredArtists: [],
-      artistSearch: this.$route.params.artistName || ''
+      artistSearch: this.$route.params.artistName || '',
+      artisNameParam : this.$route.params.artistName
     };
   },
   components: {
@@ -59,8 +60,11 @@ export default {
     createArtist() {
       this.$router.push({ path: 'artists/new' });
     },
+  },
+  computed: {
     searchArtist() {
-      const searchName = this.artistSearch.toLowerCase();
+      let searchName = this.artistSearch.toLowerCase();
+      if(this.artistNameParam != undefined) searchName = this.artworkTitleParam.toLowerCase();
       let results = _.filter(this.artists, artist => {
         const artistName = artist.name.toLowerCase();
         return artistName.indexOf(searchName) != -1;

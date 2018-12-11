@@ -77,8 +77,11 @@ export default {
     createArtwork() {
       this.$router.push({ path: `artworks/new` });
     },
+  },
+  computed : {
     searchArtwork() {
-      const searchTitle = this.artworkSearch.toLowerCase();
+      let searchTitle = this.artworkSearch.toLowerCase();
+      if(this.artworkTitleParam != undefined) searchTitle = this.artworkTitleParam.toLowerCase();
       const results = _.filter(this.artworks, artwork => {
         const isShowSculpture =
           _.includes(this.typeFilter, 'Sculpture') &&
@@ -90,7 +93,7 @@ export default {
           _.includes(this.typeFilter, 'Painting') &
           (artwork.artwork_type == 'painting');
         const isShowOther =
-          _.includes(this.typeFilter, 'Other') &&
+          _.includes(this.typeFilter, 'Other Types') &&
           artwork.artwork_type == 'other';
         const isShow =
           isShowSculpture || isShowStatue || isShowPainting || isShowOther;

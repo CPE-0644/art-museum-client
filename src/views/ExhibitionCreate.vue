@@ -26,51 +26,51 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth';
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth";
 
 const apiService = new APIService();
 
 export default {
-  name: 'ExhibitionCreate',
+  name: "ExhibitionCreate",
   data() {
     return {
       exhibitionId: this.$route.params.exhibitionId,
       exhibitionCreate: {
-        name: '',
-        start_date: '',
-        end_date: '',
-        supported_visitor: ''
+        name: "",
+        start_date: "",
+        end_date: "",
+        supported_visitor: ""
       },
       rules: {
-        name: [{ required: true, trigger: 'blur' }],
-        start_date: [{ required: true, trigger: 'blur' }],
-        end_date: [{ required: true, trigger: 'blur' }],
-        description: [{ required: true, trigger: 'blur' }],
-        supported_visitor: [{ required: true, trigger: 'blur' }]
+        name: [{ required: true, trigger: "blur" }],
+        start_date: [{ required: true, trigger: "blur" }],
+        end_date: [{ required: true, trigger: "blur" }],
+        description: [{ required: true, trigger: "blur" }],
+        supported_visitor: [{ required: true, trigger: "blur" }]
       }
     };
   },
   methods: {
     returnNotAdmin() {
       if (!auth.isAdmin()) {
-        this.$router.push('/');
+        this.$router.push("/");
       }
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('create!');
+          alert("create!");
           this.createExhibition(this.exhibitionCreate);
         } else {
-          console.log('error create!!');
+          console.log("error create!!");
           return false;
         }
       });
     },
     createExhibition(newExhibition) {
       return apiService.createExhibition(newExhibition).then(res => {
-        this.$router.push('/exhibitions');
+        this.$router.push("/exhibitions");
       });
     }
   },

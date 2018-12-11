@@ -16,14 +16,14 @@
 
 <script>
 // import { exhibitions } from '../assets/database/exhibitions.json';
-import ExhibitionList from '../components/ExhibitionList';
-import auth from '../utils/auth';
-import { APIService } from '../utils/APIService.js';
+import ExhibitionList from "../components/ExhibitionList";
+import auth from "../utils/auth";
+import { APIService } from "../utils/APIService.js";
 
 const apiService = new APIService();
 
 export default {
-  name: 'Exhibitions',
+  name: "Exhibitions",
   data() {
     return {
       exhibitions: []

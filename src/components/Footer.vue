@@ -14,12 +14,12 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer",
   data() {
     return {
-      location: 'Here by your side',
-      contact: 'info.Tusave@cmu.ac.th',
-      hour: 'Everyday 1:00am. - 11.00pm.'
+      location: "Here by your side",
+      contact: "info.Tusave@cmu.ac.th",
+      hour: "Everyday 1:00am. - 11.00pm."
     };
   }
 };

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import ArtistCard from '../components/ArtistCard';
+import ArtistCard from "../components/ArtistCard";
 
 export default {
-  props: ['artists'],
-  name: 'ArtistList',
+  props: ["artists"],
+  name: "ArtistList",
   components: {
     ArtistCard
   }

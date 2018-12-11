@@ -35,32 +35,32 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
+import { APIService } from "../utils/APIService.js";
 
 const apiService = new APIService();
 
 export default {
-  name: 'ArtistCreate',
+  name: "ArtistCreate",
   data() {
     return {
       artistId: this.$route.params.artistId,
       artistCreate: {
-        name: '',
-        date_of_birth: '',
-        date_of_died: '',
-        country: '',
-        epoch: '',
-        style: '',
-        description: ''
+        name: "",
+        date_of_birth: "",
+        date_of_died: "",
+        country: "",
+        epoch: "",
+        style: "",
+        description: ""
       },
       rules: {
-        name: [{ required: true, trigger: 'blur' }],
-        date_of_birth: [{ required: true, trigger: 'blur' }],
-        date_of_died: [{ required: true, trigger: 'blur' }],
-        country: [{ trigger: 'blur' }],
-        epoch: [{ trigger: 'blur' }],
-        style: [{ trigger: 'blur' }],
-        description: [{ trigger: 'blur' }]
+        name: [{ required: true, trigger: "blur" }],
+        date_of_birth: [{ required: true, trigger: "blur" }],
+        date_of_died: [{ required: true, trigger: "blur" }],
+        country: [{ trigger: "blur" }],
+        epoch: [{ trigger: "blur" }],
+        style: [{ trigger: "blur" }],
+        description: [{ trigger: "blur" }]
       }
     };
   },
@@ -68,17 +68,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('create!');
+          alert("create!");
           this.createArtist(this.artistCreate);
         } else {
-          console.log('error create!!');
+          console.log("error create!!");
           return false;
         }
       });
     },
     createArtist(newArtist) {
       return apiService.createArtist(newArtist).then(res => {
-        this.$router.push('/artists');
+        this.$router.push("/artists");
       });
     }
   }

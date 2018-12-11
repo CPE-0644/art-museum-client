@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth.js';
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth.js";
 
 const apiService = new APIService();
 
 export default {
-  name: 'Header',
+  name: "Header",
   methods: {
     isAdmin() {
       return auth.isAdmin();
@@ -34,8 +34,8 @@ export default {
     logOut() {
       return apiService.logOutUser().then(res => {
         auth.signOut();
-        alert('logout!');
-        this.$router.push('/');
+        alert("logout!");
+        this.$router.push("/");
       });
     }
   }

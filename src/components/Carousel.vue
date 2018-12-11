@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  props: ['items'],
-  name: 'Carousel'
+  props: ["items"],
+  name: "Carousel"
 };
 </script>
 
@@ -23,13 +23,13 @@ export default {
 }
 
 .el-carousel__item:nth-child(2n) {
-  background-image: url('../assets/exhibition.jpg');
+  background-image: url("../assets/exhibition.jpg");
   background-position: center;
   background-size: cover;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-  background-image: url('../assets/artwork.jpg');
+  background-image: url("../assets/artwork.jpg");
   background-position: center;
   background-size: cover;
 }

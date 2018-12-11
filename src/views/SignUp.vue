@@ -44,72 +44,72 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
+import { APIService } from "../utils/APIService.js";
 
 const apiService = new APIService();
 
 export default {
-  name: 'SignUp',
+  name: "SignUp",
   data() {
     return {
       signUp: {
-        name: '',
-        email: '',
-        username: '',
-        password: '',
-        address: '',
-        phone: '',
-        age: '',
+        name: "",
+        email: "",
+        username: "",
+        password: "",
+        address: "",
+        phone: "",
+        age: "",
         interested: []
       },
       rules: {
         username: [
           {
             required: true,
-            message: 'Please input username',
-            trigger: 'blur'
+            message: "Please input username",
+            trigger: "blur"
           },
           {
             min: 4,
             max: 10,
-            message: 'Length should be 4 to 10',
-            trigger: 'blur'
+            message: "Length should be 4 to 10",
+            trigger: "blur"
           }
         ],
         password: [
           {
             required: true,
-            message: 'Please input password'
+            message: "Please input password"
           },
           {
             min: 4,
             max: 10,
-            message: 'Length should be 4 to 10',
-            trigger: 'blur'
+            message: "Length should be 4 to 10",
+            trigger: "blur"
           }
         ],
-        name: [{ required: true, message: 'Please input your name' }],
+        name: [{ required: true, message: "Please input your name" }],
         email: [
           {
-            message: 'Please input email address',
-            trigger: 'blur'
+            message: "Please input email address",
+            trigger: "blur"
           },
           {
-            type: 'email',
-            message: 'Please input correct email address',
-            trigger: ['blur']
+            type: "email",
+            message: "Please input correct email address",
+            trigger: ["blur"]
           }
         ],
         interested: [
           {
-            type: 'array',
+            type: "array",
             required: true,
-            message: 'Please select at least one interested type',
-            trigger: 'change'
+            message: "Please select at least one interested type",
+            trigger: "change"
           }
         ],
-        phone: [{ type: 'number' }],
-        age: [{ type: 'number ', message: 'age must be a number' }]
+        phone: [{ type: "number" }],
+        age: [{ type: "number ", message: "age must be a number" }]
       }
     };
   },
@@ -117,10 +117,10 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('submit!');
-          apiService.createUser(this.signUp).then(this.$router.push('/'));
+          alert("submit!");
+          apiService.createUser(this.signUp).then(this.$router.push("/"));
         } else {
-          console.log('error submit!!');
+          console.log("error submit!!");
           return false;
         }
       });

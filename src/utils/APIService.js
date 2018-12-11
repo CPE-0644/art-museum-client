@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { API_URL } from './url';
+import { API_URL } from "./url";
 
 // axios.defaults.withCredentials = true;
 export class APIService {
@@ -57,6 +57,11 @@ export class APIService {
 
   fetchCollections() {
     const url = `${API_URL}/collections`;
+    return this.fetchUrl(url);
+  }
+
+  fetchCollectionById(id) {
+    const url = `${API_URL}/collections/${id}`;
     return this.fetchUrl(url);
   }
 
@@ -139,7 +144,7 @@ export class APIService {
 
   postUserJoinExhibition(exhibitionId) {
     const url = `${API_URL}/exhibitions/${exhibitionId}/users`;
-    const museum_goer_id = localStorage.getItem('userId');
+    const museum_goer_id = localStorage.getItem("userId");
     return axios.post(url, { museum_goer_id: museum_goer_id });
   }
 }

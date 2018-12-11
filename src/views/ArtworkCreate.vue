@@ -41,38 +41,38 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth';
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth";
 
 const apiService = new APIService();
 
 export default {
-  name: 'ArtworCreate',
+  name: "ArtworCreate",
   data() {
     return {
       artists: [],
       artworkId: this.$route.params.artworkId,
       artworkCreate: {
-        year: '',
-        title: '',
-        description: '',
-        origin: '',
-        epoch: '',
-        artist_id: ''
+        year: "",
+        title: "",
+        description: "",
+        origin: "",
+        epoch: "",
+        artist_id: ""
       },
       rules: {
-        year: [{ required: true, trigger: 'blur' }],
-        title: [{ required: true, trigger: 'blur' }],
-        description: [{ required: true, trigger: 'blur' }],
-        origin: [{ required: true, trigger: 'blur' }],
-        epoch: [{ required: true, trigger: 'blur' }]
+        year: [{ required: true, trigger: "blur" }],
+        title: [{ required: true, trigger: "blur" }],
+        description: [{ required: true, trigger: "blur" }],
+        origin: [{ required: true, trigger: "blur" }],
+        epoch: [{ required: true, trigger: "blur" }]
       }
     };
   },
   methods: {
     returnNotAdmin() {
       if (!auth.isAdmin()) {
-        this.$router.push('/');
+        this.$router.push("/");
       }
     },
     fetchArtists() {
@@ -83,17 +83,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('create!');
+          alert("create!");
           this.createArtwork(this.artworkCreate);
         } else {
-          console.log('error create!!');
+          console.log("error create!!");
           return false;
         }
       });
     },
     createArtwork(newArtwork) {
       return apiService.createArtwork(newArtwork).then(res => {
-        this.$router.push('/artworks');
+        this.$router.push("/artworks");
       });
     }
   },

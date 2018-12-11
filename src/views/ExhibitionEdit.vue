@@ -26,49 +26,49 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth';
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth";
 
 const apiService = new APIService();
 
 export default {
-  name: 'ExhibitionEdit',
+  name: "ExhibitionEdit",
   data() {
     return {
       exhibitionId: this.$route.params.exhibitionId,
       exhibitionEdit: {
-        id: '',
-        name: '',
-        start_date: '',
-        end_date: '',
-        supported_visitor: ''
+        id: "",
+        name: "",
+        start_date: "",
+        end_date: "",
+        supported_visitor: ""
       },
       rules: {
-        name: [{ required: true, trigger: 'blur' }],
-        start_date: [{ required: true, trigger: 'blur' }],
-        end_date: [{ required: true, trigger: 'blur' }],
-        description: [{ required: true, trigger: 'blur' }],
-        supported_visitor: [{ required: true, trigger: 'blur' }]
+        name: [{ required: true, trigger: "blur" }],
+        start_date: [{ required: true, trigger: "blur" }],
+        end_date: [{ required: true, trigger: "blur" }],
+        description: [{ required: true, trigger: "blur" }],
+        supported_visitor: [{ required: true, trigger: "blur" }]
       }
     };
   },
   methods: {
     returnNotAdmin() {
       if (!auth.isAdmin()) {
-        this.$router.push('/');
+        this.$router.push("/");
       }
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('edit!');
+          alert("edit!");
           apiService
             .updateExhibition(this.exhibitionId, this.exhibitionEdit)
             .then(res => {
-              this.$router.push('/exhibitions');
+              this.$router.push("/exhibitions");
             });
         } else {
-          console.log('error edit!!');
+          console.log("error edit!!");
           return false;
         }
       });

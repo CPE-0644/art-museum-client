@@ -41,39 +41,39 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth';
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth";
 
 const apiService = new APIService();
 
 export default {
-  name: 'ArtworkEdit',
+  name: "ArtworkEdit",
   data() {
     return {
       artists: [],
       artworkId: this.$route.params.artworkId,
       artworkEdit: {
-        id: '',
-        year: '',
-        title: '',
-        description: '',
-        origin: '',
-        epoch: '',
-        artist_id: ''
+        id: "",
+        year: "",
+        title: "",
+        description: "",
+        origin: "",
+        epoch: "",
+        artist_id: ""
       },
       rules: {
-        year: [{ required: true, trigger: 'blur' }],
-        title: [{ required: true, trigger: 'blur' }],
-        description: [{ required: true, trigger: 'blur' }],
-        origin: [{ required: true, trigger: 'blur' }],
-        epoch: [{ required: true, trigger: 'blur' }]
+        year: [{ required: true, trigger: "blur" }],
+        title: [{ required: true, trigger: "blur" }],
+        description: [{ required: true, trigger: "blur" }],
+        origin: [{ required: true, trigger: "blur" }],
+        epoch: [{ required: true, trigger: "blur" }]
       }
     };
   },
   methods: {
     returnNotAdmin() {
       if (!auth.isAdmin()) {
-        this.$router.push('/');
+        this.$router.push("/");
       }
     },
     fetchArtists() {
@@ -84,14 +84,14 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('edit!');
+          alert("edit!");
           apiService
             .updateArtwork(this.artworkId, this.artworkEdit)
             .then(res => {
-              this.$router.push('/artworks');
+              this.$router.push("/artworks");
             });
         } else {
-          console.log('error edit!!');
+          console.log("error edit!!");
           return false;
         }
       });

@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import ArtworkCard from '../components/ArtworkCard';
+import ArtworkCard from "../components/ArtworkCard";
 
 export default {
-  props: ['artworks'],
-  name: 'ArtworkList',
+  props: ["artworks"],
+  name: "ArtworkList",
   components: {
     ArtworkCard
   }

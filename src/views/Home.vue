@@ -35,14 +35,14 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import { APIService } from '../utils/APIService.js';
-import Carousel from '../components/Carousel';
+import _ from "lodash";
+import { APIService } from "../utils/APIService.js";
+import Carousel from "../components/Carousel";
 
 const apiService = new APIService();
 
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
       sampleExhibitions: [],

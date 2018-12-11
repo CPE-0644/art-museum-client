@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  props: ['collections'],
-  name: 'CollectionList'
+  props: ["collections"],
+  name: "CollectionList"
 };
 </script>

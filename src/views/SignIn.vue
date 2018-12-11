@@ -21,32 +21,32 @@
 </template>
 
 <script>
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth.js';
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth.js";
 const apiService = new APIService();
 
 export default {
-  name: 'SignIn',
+  name: "SignIn",
   data() {
     return {
       user: {},
       logInSuccess: false,
       signIn: {
-        username: '',
-        passowrd: ''
+        username: "",
+        passowrd: ""
       },
       rules: {
         username: [
           {
             // required: true,
-            message: 'Please input username',
-            trigger: 'blur'
+            message: "Please input username",
+            trigger: "blur"
           }
         ],
         password: [
           {
             // required: true,
-            message: 'Please input password'
+            message: "Please input password"
           }
         ]
       }
@@ -57,18 +57,18 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           apiService.authUser(this.signIn).then(res => {
-            alert('submit!');
+            alert("submit!");
             this.logInSuccess = true;
             this.user = res.data;
             auth.signIn(this.user);
             apiService.fetchUserById(this.user.id).then(data => {
-              localStorage.setItem('userInterested', data[0].interested);
+              localStorage.setItem("userInterested", data[0].interested);
             });
 
-            this.$router.push('/');
+            this.$router.push("/");
           });
         } else {
-          console.log('error submit!!');
+          console.log("error submit!!");
           return false;
         }
       });

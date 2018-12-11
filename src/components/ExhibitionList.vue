@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import ExhibitionCard from './ExhibitionCard';
+import ExhibitionCard from "./ExhibitionCard";
 export default {
-  props: ['exhibitionDetailList'],
-  name: 'ExhibitionList',
+  props: ["exhibitionDetailList"],
+  name: "ExhibitionList",
   components: {
     ExhibitionCard
   }

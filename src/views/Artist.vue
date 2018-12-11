@@ -28,20 +28,20 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import ArtistList from '../components/ArtistList';
-import { APIService } from '../utils/APIService.js';
-import auth from '../utils/auth';
+import _ from "lodash";
+import ArtistList from "../components/ArtistList";
+import { APIService } from "../utils/APIService.js";
+import auth from "../utils/auth";
 const apiService = new APIService();
 
 export default {
-  name: 'Artists',
+  name: "Artists",
   data() {
     return {
       artists: [],
       filteredArtists: [],
-      artistSearch: this.$route.params.artistName || '',
-      artisNameParam : this.$route.params.artistName
+      artistSearch: this.$route.params.artistName || "",
+      artisNameParam: this.$route.params.artistName
     };
   },
   components: {
@@ -58,13 +58,14 @@ export default {
       });
     },
     createArtist() {
-      this.$router.push({ path: 'artists/new' });
-    },
+      this.$router.push({ path: "artists/new" });
+    }
   },
   computed: {
     searchArtist() {
       let searchName = this.artistSearch.toLowerCase();
-      if(this.artistNameParam != undefined) searchName = this.artworkTitleParam.toLowerCase();
+      if (this.artistNameParam != undefined)
+        searchName = this.artworkTitleParam.toLowerCase();
       let results = _.filter(this.artists, artist => {
         const artistName = artist.name.toLowerCase();
         return artistName.indexOf(searchName) != -1;
@@ -95,7 +96,7 @@ export default {
   margin-bottom: 50px;
 
   .artist-page-thumbnail {
-    background-image: url('http://localhost:3000/images/thumbnails/artist.jpg');
+    background-image: url("http://localhost:3000/images/thumbnails/artist.jpg");
     width: 100%;
     height: 30vw;
     background-position: center;

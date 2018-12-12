@@ -44,6 +44,24 @@
             v-model="exhibitionEdit.supported_visitor"
           ></el-input>
         </el-form-item>
+        <p style="text-align: center; margin: 20px;">Exhibition Artwork Lists</p>
+        <div style="text-align: center; padding:20px">
+          <el-transfer
+            style="text-align: left; display: inline-block"
+            v-model="showArtworks"
+            filterable
+            filter-placeholder="Enter Artwork Title"
+            :render-content="renderFunc"
+            :titles="['Collection', 'Show']"
+            :button-texts="['Collect', 'Show']"
+            :format="{
+              noChecked: '${total}',
+              hasChecked: '${checked}/${total}'
+            }"
+            :data="artworkData"
+          >
+          </el-transfer>
+        </div>
         <el-form-item>
           <el-button
             type="primary"
@@ -56,6 +74,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import { APIService } from "../utils/APIService.js";
 import auth from "../utils/auth";
 
@@ -65,6 +84,15 @@ export default {
   name: "ExhibitionEdit",
   data() {
     return {
+      artworkData: [],
+      showArtworks: [],
+      renderFunc(h, option) {
+        return (
+          <span>
+            {option.key} - {option.label}
+          </span>
+        );
+      },
       exhibitionId: this.$route.params.exhibitionId,
       exhibitionEdit: {
         id: "",
@@ -103,14 +131,35 @@ export default {
       });
     },
     fetchExhibition(id) {
-      apiService.fetchExhibition(id).then(data => {
+      return apiService.fetchExhibition(id).then(data => {
         this.exhibitionEdit = data[0];
+      });
+    },
+    fetchArtworks() {
+      return apiService.fetchArtworks().then(data => {
+        _.forEach(data, artwork => {
+          this.artworkData.push({
+            key: artwork.id,
+            label: artwork.title
+          });
+        });
+      });
+    },
+    fetchArtworksByExhibitionId(id) {
+      return apiService.fetchArtworksByExhibitionId(id).then(data => {
+        const exhibitionArtworks = data;
+
+        _.forEach(exhibitionArtworks, artwork => {
+          this.showArtworks.push(artwork.id);
+        });
       });
     }
   },
   mounted() {
     this.returnNotAdmin();
     this.fetchExhibition(this.exhibitionId);
+    this.fetchArtworks();
+    this.fetchArtworksByExhibitionId(this.exhibitionId);
   }
 };
 </script>

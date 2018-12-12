@@ -84,11 +84,10 @@ export default {
               localStorage.setItem("userInterested", data[0].interested);
             });
 
-            this.$router.push("/");
             location.reload();
+            this.$router.push("/");
           });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

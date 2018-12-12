@@ -173,7 +173,6 @@ export default {
           alert("submit!");
           apiService.createUser(this.signUp).then(this.$router.push("/"));
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

@@ -42,8 +42,6 @@
         v-if="isLoggedIn()"
         @click="logOut"
       >Sign Out</el-menu-item>
-      log in: {{isLoggedIn()}}
-      is admin : {{isAdmin()}}
     </el-menu>
   </div>
 </template>
@@ -64,11 +62,13 @@ export default {
       return auth.isLoggedIn();
     },
     logOut() {
-      return apiService.logOutUser().then(res => {
-        auth.signOut();
-        alert("logout!");
-        location.reload();
-        this.$router.push("/");
+      return apiService.logOutUser().then(() => {
+        const cf = confirm("logout!");
+        if (cf) {
+          auth.signOut();
+          location.reload();
+          this.$router.push("/");
+        }
       });
     }
   }

@@ -119,7 +119,7 @@ export default {
           if (cf) {
             apiService
               .updateArtwork(this.artworkId, this.artworkEdit)
-              .then(res => {
+              .then(() => {
                 this.$router.push("/artworks");
               });
           }

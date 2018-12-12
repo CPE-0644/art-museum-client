@@ -94,11 +94,10 @@ export default {
           confirm(`Edit exhibition id ${this.exhibitionId} ?`);
           apiService
             .updateExhibition(this.exhibitionId, this.exhibitionEdit)
-            .then(res => {
+            .then(() => {
               this.$router.push("/exhibitions");
             });
         } else {
-          console.log("error edit!!");
           return false;
         }
       });

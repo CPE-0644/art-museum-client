@@ -140,6 +140,12 @@ export class APIService {
     return axios.put(url, editExhibition);
   }
 
+  updateExhibitionDisplay(id, artworkIds) {
+    console.log(artworkIds);
+    const url = `${API_URL}/exhibitions/${id}/artworks`;
+    return axios.post(url, artworkIds);
+  }
+
   deleteArtwork(id) {
     const url = `${API_URL}/artworks/${id}`;
     return axios.delete(url);

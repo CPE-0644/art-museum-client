@@ -48,7 +48,7 @@
         <div style="text-align: center; padding:20px">
           <el-transfer
             style="text-align: left; display: inline-block"
-            v-model="showArtworks"
+            v-model="showArtworkIds"
             filterable
             filter-placeholder="Enter Artwork Title"
             :render-content="renderFunc"
@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       artworkData: [],
-      showArtworks: [],
+      showArtworkIds: [],
       renderFunc(h, option) {
         return (
           <span>
@@ -122,9 +122,13 @@ export default {
           confirm(`Edit exhibition id ${this.exhibitionId} ?`);
           apiService
             .updateExhibition(this.exhibitionId, this.exhibitionEdit)
-            .then(() => {
-              this.$router.push("/exhibitions");
-            });
+            .then(
+              apiService
+                .updateExhibitionDisplay(this.exhibitionId, this.showArtworkIds)
+                .then(() => {
+                  this.$router.push("/exhibitions");
+                })
+            );
         } else {
           return false;
         }
@@ -150,7 +154,7 @@ export default {
         const exhibitionArtworks = data;
 
         _.forEach(exhibitionArtworks, artwork => {
-          this.showArtworks.push(artwork.id);
+          this.showArtworkIds.push(artwork.id);
         });
       });
     }

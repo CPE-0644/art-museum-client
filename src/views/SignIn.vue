@@ -72,11 +72,17 @@ export default {
     };
   },
   methods: {
+    isLoggedIn() {
+      return auth.isLoggedIn();
+    },
+    returnLoggedIn() {
+      if (this.isLoggedIn()) this.$router.push("/");
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           apiService.authUser(this.signIn).then(res => {
-            alert("submit!");
+            alert("login success!");
             this.logInSuccess = true;
             this.user = res.data;
             auth.signIn(this.user);
@@ -84,8 +90,7 @@ export default {
               localStorage.setItem("userInterested", data[0].interested);
             });
 
-            location.reload();
-            this.$router.push("/");
+            location.reload().then(this.$router.push("/"));
           });
         } else {
           return false;
@@ -95,6 +100,9 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  mounted() {
+    this.returnLoggedIn();
   }
 };
 </script>

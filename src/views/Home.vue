@@ -1,21 +1,30 @@
 <template>
   <div id="home">
-    <section id="title" class="inner-section">
+    <section
+      id="title"
+      class="inner-section"
+    >
       <div class="text-content">
         <h1 class="heading">JustAMuseum</h1>
         <h4 class="subheading">Find your interested!</h4>
       </div>
     </section>
-    <section id="section-exhibition" class="inner-section">
+    <section
+      id="section-exhibition"
+      class="inner-section"
+    >
       <h2>
-        Exhibition  
-      </h2> 
+        Exhibition
+      </h2>
       <carousel :items="sampleExhibitions"></carousel>
       <router-link to="/exhibitions">
         <i class="el-icon-more"></i>
       </router-link>
     </section>
-    <section id="section-artwork" class="inner-section">
+    <section
+      id="section-artwork"
+      class="inner-section"
+    >
       <h2>
         Artwork
       </h2>
@@ -24,7 +33,10 @@
         <i class="el-icon-more"></i>
       </router-link>
     </section>
-    <section id="section-artist" class="inner-section">
+    <section
+      id="section-artist"
+      class="inner-section"
+    >
       <h2>Artist</h2>
       <carousel :items="sampleArtists"></carousel>
       <router-link to="/artists">

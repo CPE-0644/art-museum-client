@@ -1,26 +1,56 @@
 <template>
   <div class="_create_exhibition_page body-content">
     <div class="_create_exhibition_form">
-    <h1 style="margin-bottom: 50px;">
-      Create Exhibition
-    </h1>
-    <el-form :model="exhibitionCreate" :rules="rules" label-position="left" ref="exhibitionCreate" label-width="120px">
-      <el-form-item label="Name" prop="name">
-        <el-input v-model="exhibitionCreate.name"></el-input>
-      </el-form-item>
-      <el-form-item label="Start Date" prop="start_date">
-        <el-input type="date" v-model="exhibitionCreate.start_date"></el-input>
-      </el-form-item>
-      <el-form-item label="End Date" prop="end_date">
-        <el-input type="date" v-model="exhibitionCreate.end_date"></el-input>
-      </el-form-item>
-      <el-form-item label="Number Visitor" prop="supported_visitor">
-        <el-input type="number" v-model="exhibitionCreate.supported_visitor"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('exhibitionCreate')">Submit</el-button>
-      </el-form-item>
-    </el-form>
+      <h1 style="margin-bottom: 50px;">
+        Create Exhibition
+      </h1>
+      <el-form
+        :model="exhibitionCreate"
+        :rules="rules"
+        label-position="left"
+        ref="exhibitionCreate"
+        label-width="120px"
+      >
+        <el-form-item
+          label="Name"
+          prop="name"
+        >
+          <el-input v-model="exhibitionCreate.name"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="Start Date"
+          prop="start_date"
+        >
+          <el-input
+            type="date"
+            v-model="exhibitionCreate.start_date"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          label="End Date"
+          prop="end_date"
+        >
+          <el-input
+            type="date"
+            v-model="exhibitionCreate.end_date"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          label="Number Visitor"
+          prop="supported_visitor"
+        >
+          <el-input
+            type="number"
+            v-model="exhibitionCreate.supported_visitor"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="submitForm('exhibitionCreate')"
+          >Submit</el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -60,7 +90,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("create!");
+          alert("Create exhibition success!");
           this.createExhibition(this.exhibitionCreate);
         } else {
           console.log("error create!!");

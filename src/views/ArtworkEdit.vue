@@ -1,43 +1,74 @@
 <template>
   <div class="_edit_artwork_page body-content">
     <div class="_edit_artwork_form">
-    <h1 style="margin-bottom: 50px;">
-      Edit Artwork Detail
-    </h1>
-    <el-form :model="artworkEdit" :rules="rules" label-position="left" ref="artworkEdit" label-width="120px">
-      <el-form-item label="Title" prop="title">
-        <el-input v-model="artworkEdit.title"></el-input>
-      </el-form-item>
-      <el-form-item label="Year" prop="year">
-        <el-input v-model="artworkEdit.year"></el-input>
-      </el-form-item>
-      <el-form-item label="Origin" prop="origin">
-        <el-input v-model="artworkEdit.origin"></el-input>
-      </el-form-item>
-      <el-form-item label="Epoch" prop="epoch">
-        <el-input v-model="artworkEdit.epoch"></el-input>
-      </el-form-item>
-      <el-form-item label="Description" prop="description">
-        <el-input type="textarea" v-model="artworkEdit.description"></el-input>
-      </el-form-item>
-       <el-form-item label="Artist">
-        <el-select v-model="artworkEdit.artist_id" placeholder="Select Artist">
-          <el-option
-            v-for="artist in artists"
-            :key="artist.id"
-            :label="artist.name"
-            :value="artist.id">
-            <span style="float: left">{{ artist.name }}</span>
-            <span style="float: right; color: #8492a6; font-size: 13px">{{ artist.id }}</span>
-          </el-option>
-        </el-select>
-      </el-form-item >
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('artworkEdit')">Submit</el-button>
-      </el-form-item>
-    </el-form>
+      <h1 style="margin-bottom: 50px;">
+        Edit Artwork Detail
+      </h1>
+      <el-form
+        :model="artworkEdit"
+        :rules="rules"
+        label-position="left"
+        ref="artworkEdit"
+        label-width="120px"
+      >
+        <el-form-item
+          label="Title"
+          prop="title"
+        >
+          <el-input v-model="artworkEdit.title"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="Year"
+          prop="year"
+        >
+          <el-input v-model="artworkEdit.year"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="Origin"
+          prop="origin"
+        >
+          <el-input v-model="artworkEdit.origin"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="Epoch"
+          prop="epoch"
+        >
+          <el-input v-model="artworkEdit.epoch"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="Description"
+          prop="description"
+        >
+          <el-input
+            type="textarea"
+            v-model="artworkEdit.description"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="Artist">
+          <el-select
+            v-model="artworkEdit.artist_id"
+            placeholder="Select Artist"
+          >
+            <el-option
+              v-for="artist in artists"
+              :key="artist.id"
+              :label="artist.name"
+              :value="artist.id"
+            >
+              <span style="float: left">{{ artist.name }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px">{{ artist.id }}</span>
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="submitForm('artworkEdit')"
+          >Submit</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -84,14 +115,15 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("edit!");
-          apiService
-            .updateArtwork(this.artworkId, this.artworkEdit)
-            .then(res => {
-              this.$router.push("/artworks");
-            });
+          let cf = confirm(`Edit artwork id ${this.artworkId} ?`);
+          if (cf) {
+            apiService
+              .updateArtwork(this.artworkId, this.artworkEdit)
+              .then(res => {
+                this.$router.push("/artworks");
+              });
+          }
         } else {
-          console.log("error edit!!");
           return false;
         }
       });

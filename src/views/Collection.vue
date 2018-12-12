@@ -89,13 +89,13 @@
 // TODO: added artwork filter by [artist, artwork name, artwork type ]
 
 <script>
-import CollectionList from '../components/CollectionList';
-import { APIService } from '../utils/APIService.js';
+import CollectionList from "../components/CollectionList";
+import { APIService } from "../utils/APIService.js";
 
 const apiService = new APIService();
 
 export default {
-  name: 'Collections',
+  name: "Collections",
   data() {
     return {
       collectonSearch: 1,
@@ -106,15 +106,6 @@ export default {
   methods: {
     searchCollectionDetail(id) {
       this.collectionDetail = this.collections[id];
-      
-      }
-    },
-    fetchCollectionById(id) {
-      return apiService.fetchCollectionById(id).then(data => {
-        this.collection = data;
-        this.collectionSearch = this.collection.id;
-        this.collectionDetail = this.collection;
-      })
     },
     fetchCollections() {
       return apiService.fetchCollections().then(data => {

@@ -1,41 +1,75 @@
 <template>
   <div class="artist-card">
-    <el-dialog title="Delete Artist" :visible.sync="removeDialogVisible" width="30%">
+    <el-dialog
+      title="Delete Artist"
+      :visible.sync="removeDialogVisible"
+      width="30%"
+    >
       <span>
         Are you sure to
         <span style="color:red;">delete</span> artist
         <h6>{{artist.name}}</h6>
       </span>
-      <span slot="footer" class="dialog-footer">
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
         <el-button @click="removeDialogVisible = false">Cancel</el-button>
-        <el-button type="danger" @click="deleteArtist(artist.id)">Delete</el-button>
+        <el-button
+          type="danger"
+          @click="deleteArtist(artist.id)"
+        >Delete</el-button>
       </span>
     </el-dialog>
 
     <el-collapse>
-      <el-collapse-item :title="artist.name" :name="artist.id">
+      <el-collapse-item
+        :title="artist.name"
+        :name="artist.id"
+      >
         <b-container>
           <el-card shadow="hover">
-            <div class="artist-edit-delete" v-if="isAdmin()">
-              <i class="el-icon-delete red" @click="removeDialogVisible = true"></i>
+            <div
+              class="artist-edit-delete"
+              v-if="isAdmin()"
+            >
+              <i
+                class="el-icon-delete red"
+                @click="removeDialogVisible = true"
+              ></i>
             </div>
             <b-row>
               <b-col class="artist-head">
-                <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                  <img v-bind:src="src" class="image">
+                <el-card
+                  :body-style="{ padding: '0px' }"
+                  shadow="hover"
+                >
+                  <img
+                    v-bind:src="src"
+                    class="image"
+                  >
                   <div style="padding: 14px;">
                     <span style="font-size:20px">{{artist.name}}</span>
                     <div class="bottom clearfix">
                       <time class="time">
                         <span style="color: #777;">{{artist.date_of_birth}}</span> to
-                        <span style="color: #777;" v-if="artist.date_of_died == '0000-00-00'">NOW</span>
-                        <span style="color: #777;" v-else>{{artist.date_of_died}}</span>
+                        <span
+                          style="color: #777;"
+                          v-if="artist.date_of_died == '0000-00-00'"
+                        >NOW</span>
+                        <span
+                          style="color: #777;"
+                          v-else
+                        >{{artist.date_of_died}}</span>
                       </time>
                     </div>
                   </div>
                 </el-card>
               </b-col>
-              <b-col class="artist-detail" cols="9">
+              <b-col
+                class="artist-detail"
+                cols="9"
+              >
                 <!-- <h5> Information </h5> -->
                 <div class="information">
                   <b-row>
@@ -84,7 +118,10 @@
                 :key="index"
                 @click="goToArtwork(artwork.title)"
               >
-                <img v-bind:src="artwork.src" :title="artwork.title">
+                <img
+                  v-bind:src="artwork.src"
+                  :title="artwork.title"
+                >
               </span>
             </el-card>
           </el-card>
@@ -134,7 +171,7 @@ export default {
     },
     deleteArtist(id) {
       this.removeDialogVisible = false;
-      apiService.deleteArtist(id).then(res => this.$router.push("/"));
+      apiService.deleteArtist(id).then(location.reload());
     }
   },
   watch: {

@@ -1,26 +1,48 @@
 <template>
   <div class="exhibition-box">
-    <el-dialog title="Delete Exhibition" :visible.sync="removeDialogVisible" width="30%">
+    <el-dialog
+      title="Delete Exhibition"
+      :visible.sync="removeDialogVisible"
+      width="30%"
+    >
       <span>
         Are you sure to
         <span style="color:red;">delete</span> exhibition
         <h6>{{exhibition.name}}</h6>
       </span>
-      <span slot="footer" class="dialog-footer">
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
         <el-button @click="removeDialogVisible = false">Cancel</el-button>
-        <el-button type="danger" @click="deleteExhibition(exhibition.id)">Delete</el-button>
+        <el-button
+          type="danger"
+          @click="deleteExhibition(exhibition.id)"
+        >Delete</el-button>
       </span>
     </el-dialog>
 
     <el-card shadow="hover">
-      <div class="exhibition-edit-delete" v-if="isAdmin()">
-        <i class="el-icon-edit black" @click="editExhibition(exhibition.id)"></i>
-        <i class="el-icon-delete red" @click="removeDialogVisible = true"></i>
+      <div
+        class="exhibition-edit-delete"
+        v-if="isAdmin()"
+      >
+        <i
+          class="el-icon-edit black"
+          @click="editExhibition(exhibition.id)"
+        ></i>
+        <i
+          class="el-icon-delete red"
+          @click="removeDialogVisible = true"
+        ></i>
       </div>
       <b-row>
         <b-col cols="3">
           <div class="exhibition-image">
-            <img v-bind:src="src" class="image">
+            <img
+              v-bind:src="src"
+              class="image"
+            >
           </div>
         </b-col>
         <b-col>
@@ -39,11 +61,17 @@
                   :key="index"
                   @click="goToArtwork(artwork.title)"
                 >
-                  <img v-bind:src="artwork.src" :title="artwork.title">
+                  <img
+                    v-bind:src="artwork.src"
+                    :title="artwork.title"
+                  >
                 </span>
               </el-card>
             </div>
-            <div class="exhibition-action" v-if="exhibitionInfo.seats_left > 0">
+            <div
+              class="exhibition-action"
+              v-if="exhibitionInfo.seats_left > 0"
+            >
               <a class="exhibition-users">{{exhibitionInfo.seats_left}} seats left</a>
               <el-button
                 type="primary"
@@ -53,8 +81,15 @@
                 :disabled="isUserAlreadyJoined()"
               >JOIN NOW</el-button>
             </div>
-            <div class="exhibition-action" v-else>
-              <el-button type="primary" size="small" disabled>FULL</el-button>
+            <div
+              class="exhibition-action"
+              v-else
+            >
+              <el-button
+                type="primary"
+                size="small"
+                disabled
+              >FULL</el-button>
             </div>
           </div>
         </b-col>
@@ -126,10 +161,9 @@ export default {
     userJoinExhibition(exhibitionId) {
       if (!this.isLoggedIn()) this.$router.push("/login");
       else {
-        return apiService.postUserJoinExhibition(exhibitionId).then(res => {
-          alert(`Join exhibition ${this.exhibition.name} succeed !`);
-          this.$router.push("/");
-        });
+        return apiService
+          .postUserJoinExhibition(exhibitionId)
+          .then(location.reload());
       }
     },
     goToArtwork(artworkTitle) {
@@ -140,7 +174,7 @@ export default {
     },
     deleteExhibition(id) {
       this.removeDialogVisible = false;
-      apiService.deleteExhibition(id).then(res => this.$router.push("/"));
+      apiService.deleteExhibition(id).then(location.reload());
     }
   },
   mounted() {

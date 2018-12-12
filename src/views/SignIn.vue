@@ -4,15 +4,34 @@
       <h1 style="margin-bottom: 50px;">
         Sign In
       </h1>
-      <el-form :model="signIn" :rules="rules" label-position="left" ref="signIn" label-width="120px">
-        <el-form-item label="Username" prop="username">
+      <el-form
+        :model="signIn"
+        :rules="rules"
+        label-position="left"
+        ref="signIn"
+        label-width="120px"
+      >
+        <el-form-item
+          label="Username"
+          prop="username"
+        >
           <el-input v-model="signIn.username"></el-input>
         </el-form-item>
-        <el-form-item label="Password" prop="password">
-          <el-input type="password" v-model="signIn.password" autocomplete="off"></el-input>
+        <el-form-item
+          label="Password"
+          prop="password"
+        >
+          <el-input
+            type="password"
+            v-model="signIn.password"
+            autocomplete="off"
+          ></el-input>
         </el-form-item>
         <div class="btn">
-          <el-button type="primary" @click="submitForm('signIn')">Submit</el-button>
+          <el-button
+            type="primary"
+            @click="submitForm('signIn')"
+          >Submit</el-button>
           <el-button @click="resetForm('signIn')">Reset</el-button>
         </div>
       </el-form>
@@ -66,6 +85,7 @@ export default {
             });
 
             this.$router.push("/");
+            location.reload();
           });
         } else {
           console.log("error submit!!");

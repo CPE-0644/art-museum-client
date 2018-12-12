@@ -1,20 +1,39 @@
 <template>
   <div>
-    <el-dialog title="Delete Artwork" :visible.sync="removeDialogVisible" width="30%">
+    <el-dialog
+      title="Delete Artwork"
+      :visible.sync="removeDialogVisible"
+      width="30%"
+    >
       <span>
         Are you sure to
         <span style="color:red;">delete</span> artwork
         <h6>{{artworkDetail.title}}</h6>
       </span>
-      <span slot="footer" class="dialog-footer">
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
         <el-button @click="removeDialogVisible = false">Cancel</el-button>
-        <el-button type="danger" @click="deleteArtwork(artworkDetail.id)">Delete</el-button>
+        <el-button
+          type="danger"
+          @click="deleteArtwork(artworkDetail.id)"
+        >Delete</el-button>
       </span>
     </el-dialog>
 
-    <div class="artwork-card" @click="dialogVisible = true">
-      <el-card :body-style="{ padding: '0px' }" shadow="hover">
-        <img v-bind:src="src" class="image">
+    <div
+      class="artwork-card"
+      @click="dialogVisible = true"
+    >
+      <el-card
+        :body-style="{ padding: '0px' }"
+        shadow="hover"
+      >
+        <img
+          v-bind:src="src"
+          class="image"
+        >
         <div>
           <span>
             <h5>{{artworkDetail.title}}</h5>
@@ -38,7 +57,11 @@
                     type="warning"
                     v-else-if="artworkDetail.artwork_type == 'sculpture'"
                   >{{artworkDetail.artwork_type}}</el-tag>
-                  <el-tag size="mini" type="info" v-else>{{artworkDetail.artwork_type}}</el-tag>
+                  <el-tag
+                    size="mini"
+                    type="info"
+                    v-else
+                  >{{artworkDetail.artwork_type}}</el-tag>
                 </el-col>
               </el-row>
             </div>
@@ -47,12 +70,19 @@
       </el-card>
     </div>
 
-    <el-dialog top="8vh" :visible.sync="dialogVisible" width="80%">
+    <el-dialog
+      top="8vh"
+      :visible.sync="dialogVisible"
+      width="80%"
+    >
       <div class="dialog-body">
         <b-row>
           <b-col>
             <div class="artwork-dialog-image">
-              <img v-bind:src="src" class="artwork-image">
+              <img
+                v-bind:src="src"
+                class="artwork-image"
+              >
               <div class="dialog-style">
                 <el-tag
                   size="mini"
@@ -68,7 +98,11 @@
                   type="warning"
                   v-else-if="artworkDetail.artwork_type == 'sculpture'"
                 >{{artworkDetail.artwork_type}}</el-tag>
-                <el-tag size="mini" type="info" v-else>{{artworkDetail.artwork_type}}</el-tag>
+                <el-tag
+                  size="mini"
+                  type="info"
+                  v-else
+                >{{artworkDetail.artwork_type}}</el-tag>
               </div>
             </div>
           </b-col>
@@ -76,14 +110,15 @@
             <div class="artwork-dialog-detail">
               <h1 class="dialog-title">{{artworkDetail.title}}</h1>
               <div>
-                <h5 class="artwork-artist" @click="goToArtist(artist.name)">{{artist.name}}</h5>
+                <h5
+                  class="artwork-artist"
+                  @click="goToArtist(artist.name)"
+                >{{artist.name}}</h5>
               </div>
               <div class="dialog-specify">
                 <el-card shadow="never">
                   <i class="material-icons info">info</i>
-                  <div
-                    v-if="artworkDetail.artwork_type=='sculpture'||artworkDetail.artwork_type=='statue'"
-                  >
+                  <div v-if="artworkDetail.artwork_type=='sculpture'||artworkDetail.artwork_type=='statue'">
                     <b>Material</b>
                     {{artworkSpecifyDetail.material}} |
                     <b>Height</b>
@@ -145,12 +180,28 @@
           </b-col>
         </b-row>
       </div>
-      <div class="artwork-edit-delete" v-if="isAdmin()">
-        <i class="el-icon-edit black" @click="editArtwork(artworkDetail.id)"></i>
-        <i class="el-icon-delete red" @click="removeDialogVisible = true"></i>
+      <div
+        class="artwork-edit-delete"
+        v-if="isAdmin()"
+      >
+        <i
+          class="el-icon-edit black"
+          @click="editArtwork(artworkDetail.id)"
+        ></i>
+        <i
+          class="el-icon-delete red"
+          @click="removeDialogVisible = true"
+        ></i>
       </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="closeArtworkDialog" size="mini" type="danger">CLOSE</el-button>
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button
+          @click="closeArtworkDialog"
+          size="mini"
+          type="danger"
+        >CLOSE</el-button>
       </span>
     </el-dialog>
   </div>
@@ -211,7 +262,7 @@ export default {
     },
     deleteArtwork(id) {
       this.removeDialogVisible = false;
-      apiService.deleteArtwork(id).then(res => this.$router.push("/"));
+      apiService.deleteArtwork(id).then(location.reload());
     }
   },
   mounted() {

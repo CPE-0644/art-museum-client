@@ -115,6 +115,7 @@ export default {
         if (isShow) return _.includes(artworkTitle, searchTitle);
       });
       this.filteredArtworks = results;
+      return this.filteredArtworks;
     }
   },
   components: {

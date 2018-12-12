@@ -79,7 +79,10 @@
                 round
                 @click="userJoinExhibition(exhibition.id)"
                 :disabled="isUserAlreadyJoined()"
-              >JOIN NOW</el-button>
+              >
+                <span v-if="!isUserAlreadyJoined()">JOIN NOW</span>
+                <span v-else>JOINED</span>
+              </el-button>
             </div>
             <div
               class="exhibition-action"

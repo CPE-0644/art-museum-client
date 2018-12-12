@@ -19,7 +19,7 @@
           <el-checkbox label="Sculpture"></el-checkbox>
           <el-checkbox label="Statue"></el-checkbox>
           <el-checkbox label="Painting"></el-checkbox>
-          <el-checkbox label="Other Types"></el-checkbox>
+          <el-checkbox label="Other Type"></el-checkbox>
         </el-checkbox-group>
       </div>
 
@@ -64,7 +64,7 @@ export default {
       artworkSearch: this.$route.params.artworkTitle || "",
       filteredArtworks: [],
       artworks: [],
-      typeFilter: ["Sculpture", "Statue", "Painting", "Other Types"]
+      typeFilter: ["Sculpture", "Statue", "Painting", "Other Type"]
     };
   },
   methods: {
@@ -74,11 +74,11 @@ export default {
     isLoggedIn() {
       return auth.isLoggedIn();
     },
-    setInterestedArtworkTypes() {
+    setInterestedArtworkType() {
       if (this.isLoggedIn()) {
         this.typeFilter = [localStorage.getItem("userInterested")];
         if (this.typeFilter.length == 0 || this.typeFilter[0] == null)
-          this.typeFilter = ["Sculpture", "Statue", "Painting", "Other Types"];
+          this.typeFilter = ["Sculpture", "Statue", "Painting", "Other Type"];
       }
     },
     fetchArtworks() {
@@ -107,7 +107,7 @@ export default {
           _.includes(this.typeFilter, "Painting") &
           (artwork.artwork_type == "painting");
         const isShowOther =
-          _.includes(this.typeFilter, "Other Types") &&
+          _.includes(this.typeFilter, "Other Type") &&
           artwork.artwork_type == "other";
         const isShow =
           isShowSculpture || isShowStatue || isShowPainting || isShowOther;
@@ -122,7 +122,7 @@ export default {
     ArtworkList
   },
   mounted() {
-    this.setInterestedArtworkTypes();
+    this.setInterestedArtworkType();
     this.fetchArtworks();
   }
 };

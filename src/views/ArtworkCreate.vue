@@ -17,6 +17,66 @@
         >
           <el-input v-model="artworkCreate.title"></el-input>
         </el-form-item>
+        <el-radio-group
+          v-model="artworkCreate.type"
+          style="padding-bottom:20px;"
+        >
+          <el-radio :label="1">Sculpture</el-radio>
+          <el-radio :label="2">Statue</el-radio>
+          <el-radio :label="3">Painting</el-radio>
+          <el-radio :label="4">Other Type</el-radio>
+        </el-radio-group>
+        <div
+          class="type-input-block"
+          v-if="artworkCreate.type==1 || artworkCreate.type == 2"
+        >
+          <el-input
+            v-model="artworkCreate.types.sculpture.material"
+            placeholder="Material"
+          ></el-input>
+          <el-input
+            v-model="artworkCreate.types.sculpture.height"
+            placeholder="Height"
+          ></el-input>
+          <el-input
+            v-model="artworkCreate.types.sculpture.weight"
+            placeholder="Weight"
+          ></el-input>
+          <el-input
+            v-model="artworkCreate.types.sculpture.style"
+            placeholder="Style"
+          ></el-input>
+        </div>
+        <div
+          class="type-input-block"
+          v-else-if="artworkCreate.type==3"
+        >
+          <el-input
+            v-model="artworkCreate.types.painting.paint_type"
+            placeholder="Paint Type"
+          ></el-input>
+          <el-input
+            v-model="artworkCreate.types.painting.drawn_on"
+            placeholder="Drawn On"
+          ></el-input>
+          <el-input
+            v-model="artworkCreate.types.painting.style"
+            placeholder="Style"
+          ></el-input>
+        </div>
+        <div
+          class="type-input-block"
+          v-else-if="artworkCreate.type==4"
+        >
+          <el-input
+            v-model="artworkCreate.types.other.style"
+            placeholder="Style"
+          ></el-input>
+          <el-input
+            v-model="artworkCreate.types.other.type"
+            placeholder="Type"
+          ></el-input>
+        </div>
         <el-form-item
           label="Year"
           prop="year"
@@ -84,12 +144,33 @@ export default {
       artists: [],
       artworkId: this.$route.params.artworkId,
       artworkCreate: {
-        year: "",
         title: "",
+        type: 1,
+        year: "",
         description: "",
         origin: "",
         epoch: "",
-        artist_id: ""
+        artist_id: "",
+        types: {
+          sculpture: {
+            material: "",
+            weight: "",
+            height: "",
+            style: ""
+          },
+          statue: {
+            material: "",
+            weight: "",
+            height: "",
+            style: ""
+          },
+          painting: {
+            paint_type: "",
+            drawn_on: "",
+            style: ""
+          },
+          other: { style: "", type: "" }
+        }
       },
       rules: {
         year: [{ required: true, trigger: "blur" }],
@@ -115,16 +196,45 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.createArtwork(this.artworkCreate);
-          alert("Create artwork success!");
         } else {
           return false;
         }
       });
     },
     createArtwork(newArtwork) {
-      return apiService.createArtwork(newArtwork).then(res => {
-        this.$router.push("/artworks");
-      });
+      return apiService
+        .createArtwork(newArtwork)
+        .then(res => {
+          if (res && res.data[0]) {
+            const artworkId = res.data[0].id;
+            if (this.artworkCreate.type == 1) {
+              return apiService.createSculpture({
+                ...this.artworkCreate.types.sculpture,
+                artworkId
+              });
+            } else if (this.artworkCreate.type == 2) {
+              return apiService.createStatue({
+                ...this.artworkCreate.types.statue,
+                artworkId
+              });
+            } else if (this.artworkCreate.type == 3) {
+              return apiService.createPainting({
+                ...this.artworkCreate.types.painting,
+                artworkId
+              });
+            } else {
+              return apiService.createOtherType({
+                ...this.artworkCreate.types.other,
+                artworkId
+              });
+            }
+          }
+        })
+        .then(() => {
+          alert("Create artwork success!");
+
+          this.$router.push("/artworks");
+        });
     }
   },
   mounted() {
@@ -137,5 +247,10 @@ export default {
 <style lang="scss">
 ._create_artwork_form {
   margin: 0 120px 0 100px;
+}
+.type-input-block .el-input {
+  margin: 0px 10px 30px 10px;
+  vertical-align: top;
+  width: 150px;
 }
 </style>

@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { API_URL } from "./url";
+import { API_URL } from './url';
 
 // axios.defaults.withCredentials = true;
 export class APIService {
@@ -70,6 +70,11 @@ export class APIService {
     return this.fetchUrl(url);
   }
 
+  fetchUserById(id) {
+    const url = `${API_URL}/users/${id}`;
+    return this.fetchUrl(url);
+  }
+
   createUser(signUpForm) {
     const url = `${API_URL}/users`;
     return axios.post(url, {
@@ -84,22 +89,29 @@ export class APIService {
     });
   }
 
-  authUser(signInForm) {
-    const url = `${API_URL}/auth`;
-    return axios.post(url, {
-      username: signInForm.username,
-      password: signInForm.password
-    });
-  }
-
-  logOutUser() {
-    const url = `${API_URL}/logout`;
-    return axios.get(url);
-  }
-
   createArtwork(newArtwork) {
     const url = `${API_URL}/artworks`;
     return axios.post(url, newArtwork);
+  }
+
+  createSculpture(newSculpture) {
+    const url = `${API_URL}/artworks/sculpture`;
+    return axios.post(url, newSculpture);
+  }
+
+  createStatue(newStatue) {
+    const url = `${API_URL}/artworks/statue`;
+    return axios.post(url, newStatue);
+  }
+
+  createPainting(newPainting) {
+    const url = `${API_URL}/artworks/painting`;
+    return axios.post(url, newPainting);
+  }
+
+  createOtherType(newOtherArtwork) {
+    const url = `${API_URL}/artworks/other`;
+    return axios.post(url, newOtherArtwork);
   }
 
   createArtist(newArtist) {
@@ -110,6 +122,12 @@ export class APIService {
   createExhibition(newExhibition) {
     const url = `${API_URL}/exhibitions`;
     return axios.post(url, newExhibition);
+  }
+
+  postUserJoinExhibition(exhibitionId) {
+    const url = `${API_URL}/exhibitions/${exhibitionId}/users`;
+    const museum_goer_id = localStorage.getItem('userId');
+    return axios.post(url, { museum_goer_id: museum_goer_id });
   }
 
   updateArtwork(id, editedArtwork) {
@@ -137,14 +155,16 @@ export class APIService {
     return axios.delete(url);
   }
 
-  fetchUserById(id) {
-    const url = `${API_URL}/users/${id}`;
-    return this.fetchUrl(url);
+  authUser(signInForm) {
+    const url = `${API_URL}/auth`;
+    return axios.post(url, {
+      username: signInForm.username,
+      password: signInForm.password
+    });
   }
 
-  postUserJoinExhibition(exhibitionId) {
-    const url = `${API_URL}/exhibitions/${exhibitionId}/users`;
-    const museum_goer_id = localStorage.getItem("userId");
-    return axios.post(url, { museum_goer_id: museum_goer_id });
+  logOutUser() {
+    const url = `${API_URL}/logout`;
+    return axios.get(url);
   }
 }

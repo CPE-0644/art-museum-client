@@ -171,7 +171,9 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert("submit!");
-          apiService.createUser(this.signUp).then(this.$router.push("/"));
+          apiService.createUser(this.signUp).then(() => {
+            return this.$router.push("/");
+          });
         } else {
           return false;
         }

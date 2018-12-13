@@ -76,7 +76,7 @@ export default {
     },
     setInterestedArtworkType() {
       if (this.isLoggedIn()) {
-        this.typeFilter = [localStorage.getItem("userInterested")];
+        this.typeFilter = localStorage.getItem("userInterested").split(",");
         if (this.typeFilter.length == 0 || this.typeFilter[0] == null)
           this.typeFilter = ["Sculpture", "Statue", "Painting", "Other Type"];
       }

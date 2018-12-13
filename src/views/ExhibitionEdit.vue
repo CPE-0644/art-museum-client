@@ -62,12 +62,10 @@
           >
           </el-transfer>
         </div>
-        <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('exhibitionEdit')"
-          >Submit</el-button>
-        </el-form-item>
+        <el-button
+          type="primary"
+          @click="submitForm('exhibitionEdit')"
+        >Submit</el-button>
       </el-form>
     </div>
   </div>
@@ -128,7 +126,9 @@ export default {
                 .then(() => {
                   this.$router.push("/exhibitions");
                 })
-            );
+                .catch(error => alert("something error " + error))
+            )
+            .catch(error => alert("something error " + error));
         } else {
           return false;
         }

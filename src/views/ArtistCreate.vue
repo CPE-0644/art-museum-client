@@ -62,12 +62,10 @@
             v-model="artistCreate.description"
           ></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('artistCreate')"
-          >Submit</el-button>
-        </el-form-item>
+        <el-button
+          type="primary"
+          @click="submitForm('artistCreate')"
+        >Submit</el-button>
       </el-form>
     </div>
   </div>

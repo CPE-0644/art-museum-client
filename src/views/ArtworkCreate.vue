@@ -120,12 +120,10 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('artworkCreate')"
-          >Submit</el-button>
-        </el-form-item>
+        <el-button
+          type="primary"
+          @click="submitForm('artworkCreate')"
+        >Submit</el-button>
       </el-form>
     </div>
   </div>

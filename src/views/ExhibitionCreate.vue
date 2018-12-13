@@ -44,12 +44,10 @@
             v-model="exhibitionCreate.supported_visitor"
           ></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('exhibitionCreate')"
-          >Submit</el-button>
-        </el-form-item>
+        <el-button
+          type="primary"
+          @click="submitForm('exhibitionCreate')"
+        >Submit</el-button>
       </el-form>
     </div>
   </div>

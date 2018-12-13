@@ -84,13 +84,11 @@
         >
           <el-input v-model.number="signUp.age"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button
-            type="primary"
-            @click="submitForm('signUp')"
-          >Submit</el-button>
-          <el-button @click="resetForm('signUp')">Reset</el-button>
-        </el-form-item>
+        <el-button
+          type="primary"
+          @click="submitForm('signUp')"
+        >Submit</el-button>
+        <el-button @click="resetForm('signUp')">Reset</el-button>
       </el-form>
     </div>
   </div>
